@@ -1,0 +1,278 @@
+﻿@*@model Hospital_System.Models.Doctors
+    @{
+        ViewBag.Title = "New Doctor";
+        Layout = "~/Views/Shared/_PatientLayout.cshtml";
+
+    }
+
+    <script>
+        function back() {
+            window.location.href = '@Url.Action("DoctorList", "Doctor")';
+        }
+    </script>
+
+    @using (Html.BeginForm("NewDoctor", "Doctor"))
+    {
+        <div class="form-container">
+            <h1>Add Doctor</h1>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Id, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(m => m.Id, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Department, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(m => m.Department, new { htmlAttributes = new { @cp99lass = "form-control" } })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Designation, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(m => m.Designation, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Education, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(m => m.Education, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.PhoneNumber, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(m => m.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Gender, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(m => m.Gender, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Status, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(m => m.Status, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="form-buttons">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+                <input type="button" value="Back" onclick="back()" class="btn btn-secondary" />
+            </div>
+        </div>
+    }
+
+    <style>
+        .form-container {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .control-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+            .form-control:focus {
+                border-color: #007BFF;
+                box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+                outline: none;
+            }
+
+        .form-buttons {
+            text-align: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            margin-left: 10px;
+        }
+    </style>*@
+
+@*@model Hospital_System.Viewmodel.Allview
+@{
+    ViewBag.Title = "New Doctor";
+    Layout = "~/Views/Shared/_PatientLayout.cshtml";
+}
+
+<script>
+    function back() {
+        window.location.href = '@Url.Action("DoctorList", "Doctor")';
+    }
+</script>
+
+@using (Html.BeginForm("NewDoctor", "Doctor"))
+{
+    <div class="form-container">
+        <h1>Add Doctor</h1>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Id, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(m => m.Id, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Department, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(m => m.Department, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Designation, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(m => m.Designation, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Education, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(m => m.Education, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.PhoneNumber, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(m => m.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Gender, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(m => m.Gender, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Status, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(m => m.Status, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-buttons">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+            <input type="button" value="Back" onclick="back()" class="btn btn-secondary" />
+        </div>
+    </div>
+}
+
+<style>
+    body {
+        background-color: #e9ecef; /* Light background for contrast */
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 400px;
+      
+        margin: 4px auto; /* Center the form with top margin */
+        padding: 30px;
+        background-color: #ffffff; /* White background for the form */
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
+        overflow-y: auto; /* Allow scrolling if content overflows */
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 28px; /* Increased font size for better visibility */
+        color: #343a40; /* Dark color for the heading */
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .control-label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold; /* Make labels bold for emphasis */
+        color: #495057; /* Darker color for labels */
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px; /* Increased padding for better touch targets */
+        border: 1px solid #ced4da; /* Light border color */
+        border-radius: 6px; /* Slightly rounded corners */
+        box-sizing: border-box;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: #007BFF; /* Highlight border on focus */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+
+    .form-buttons {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 12px 25px; /* Increased padding for buttons */
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s; /* Smooth transition for button hover effects */
+    }
+
+    .btn-primary {
+        background-color: #007BFF;
+        color: white;
+        width: 101px;
+        margin-left: 174px;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        width: 100px;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Darker shade on hover */
+        }
+</style>*@
+
+

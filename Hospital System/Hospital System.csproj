@@ -1,0 +1,407 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{17D35EC3-77A2-4E43-A25B-41A51CAF6249}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hospital_System</RootNamespace>
+    <AssemblyName>Hospital System</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44313</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Site.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\0834.jpg_wh860.jpg" />
+    <Content Include="Images\4.png" />
+    <Content Include="Images\doctor_3.png" />
+    <Content Include="Images\doctor_PNG15987.png" />
+    <Content Include="Images\login.jpg" />
+    <Content Include="Images\png.png" />
+    <Content Include="Images\R.png" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BAL\AdminBAL.cs" />
+    <Compile Include="BAL\AmbulanceAdBAL.cs" />
+    <Compile Include="BAL\AmbulanceBAL.cs" />
+    <Compile Include="BAL\AmbulanceRBAL.cs" />
+    <Compile Include="BAL\AttendanceBAL.cs" />
+    <Compile Include="BAL\AttendBAL.cs" />
+    <Compile Include="BAL\BillAdBAL.cs" />
+    <Compile Include="BAL\BillingBAL.cs" />
+    <Compile Include="BAL\CommonBAL.cs" />
+    <Compile Include="BAL\ConsultantAdBAL.cs" />
+    <Compile Include="BAL\ConsultBAL.cs" />
+    <Compile Include="BAL\DischargeAdBAL.cs" />
+    <Compile Include="BAL\DischargeBAL.cs" />
+    <Compile Include="BAL\DoctorBAL.cs" />
+    <Compile Include="BAL\FeedbackAdBAL.cs" />
+    <Compile Include="BAL\FeedBAL.cs" />
+    <Compile Include="BAL\InPatientAdBAL.cs" />
+    <Compile Include="BAL\InPatientBAL.cs" />
+    <Compile Include="BAL\MailBAL.cs" />
+    <Compile Include="BAL\MenuBAL.cs" />
+    <Compile Include="BAL\NurseAdBAL.cs" />
+    <Compile Include="BAL\NurseBAL.cs" />
+    <Compile Include="BAL\OPBAL.cs" />
+    <Compile Include="BAL\OutPatientAdBAL.cs" />
+    <Compile Include="BAL\PatientBAL.cs" />
+    <Compile Include="BAL\VaccineAdBAL.cs" />
+    <Compile Include="BAL\VaccineBAL.cs" />
+    <Compile Include="Controllers\AmbulanceAdController.cs" />
+    <Compile Include="Controllers\AmbulanceController.cs" />
+    <Compile Include="Controllers\AmbulanceRController.cs" />
+    <Compile Include="Controllers\AnnouncementAdController.cs" />
+    <Compile Include="Controllers\AppointmentAdController.cs" />
+    <Compile Include="Controllers\AppointmentController.cs" />
+    <Compile Include="Controllers\AttendanceAdminController.cs" />
+    <Compile Include="Controllers\AttendanceController.cs" />
+    <Compile Include="Controllers\BillAdminController.cs" />
+    <Compile Include="Controllers\BillingController.cs" />
+    <Compile Include="Controllers\CommonOPController.cs" />
+    <Compile Include="Controllers\ComplaintAdController.cs" />
+    <Compile Include="Controllers\ComplaintController.cs" />
+    <Compile Include="Controllers\ConsultantAdminController.cs" />
+    <Compile Include="Controllers\ConsultController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\DischargeAdminController.cs" />
+    <Compile Include="Controllers\DischargeController.cs" />
+    <Compile Include="Controllers\DoctorAdController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
+    <Compile Include="Controllers\FeedbackAdminController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Controllers\InPatientAdminController.cs" />
+    <Compile Include="Controllers\InpatientController.cs" />
+    <Compile Include="Controllers\MedicineAdController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\NurseAdminController.cs" />
+    <Compile Include="Controllers\NurseController.cs" />
+    <Compile Include="Controllers\OutPatientAdminController.cs" />
+    <Compile Include="Controllers\OutpatientController.cs" />
+    <Compile Include="Controllers\PatientAdController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\ReceptionAdminController.cs" />
+    <Compile Include="Controllers\ReceptionController.cs" />
+    <Compile Include="Controllers\SheduleAdController.cs" />
+    <Compile Include="Controllers\UpdateProfileController.cs" />
+    <Compile Include="Controllers\VaccinationAdminController.cs" />
+    <Compile Include="Controllers\VaccinationController.cs" />
+    <Compile Include="DAL\AdminDAL.cs" />
+    <Compile Include="DAL\AmbulanceDAL.cs" />
+    <Compile Include="DAL\AmbulanceRDAL.cs" />
+    <Compile Include="DAL\AttendanceAdDAL.cs" />
+    <Compile Include="DAL\AttendDAL.cs" />
+    <Compile Include="DAL\BillAdDAL.cs" />
+    <Compile Include="DAL\BillingDAL.cs" />
+    <Compile Include="DAL\CommonDAL.cs" />
+    <Compile Include="DAL\ConsultantAdDAL.cs" />
+    <Compile Include="DAL\ConsultDAL.cs" />
+    <Compile Include="DAL\DischargeAdDAL.cs" />
+    <Compile Include="DAL\DischargeDAL.cs" />
+    <Compile Include="DAL\DoctorDAL.cs" />
+    <Compile Include="DAL\FeedbackAdDAL.cs" />
+    <Compile Include="DAL\FeedDAL.cs" />
+    <Compile Include="DAL\InPatientAdDAL.cs" />
+    <Compile Include="DAL\InpatientsDAL.cs" />
+    <Compile Include="DAL\MailDAL.cs" />
+    <Compile Include="DAL\MenuDAL.cs" />
+    <Compile Include="DAL\NurseAdDAL.cs" />
+    <Compile Include="DAL\NurseDAL.cs" />
+    <Compile Include="DAL\OPDAL.cs" />
+    <Compile Include="DAL\OutPatientAdDAL.cs" />
+    <Compile Include="DAL\Patient1.cs" />
+    <Compile Include="DAL\VaccineDAL.cs" />
+    <Compile Include="DAL\VacineAdDAL.cs" />
+    <Compile Include="Dash\DashboardDetails.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Adminmenu.cs" />
+    <Compile Include="Models\Ambulance.cs" />
+    <Compile Include="Models\AmbulanceDetails .cs" />
+    <Compile Include="Models\AmbulanceDo.cs" />
+    <Compile Include="Models\AmbulanceDriver.cs" />
+    <Compile Include="Models\Announcement.cs" />
+    <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\Attend.cs" />
+    <Compile Include="Models\AttendanceDo.cs" />
+    <Compile Include="Models\BillAd.cs" />
+    <Compile Include="Models\Billing .cs" />
+    <Compile Include="Models\ConsultantDo.cs" />
+    <Compile Include="Models\DasboardDetails.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\DischargeDo.cs" />
+    <Compile Include="Models\DischargPatient.cs" />
+    <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\Doctors.cs" />
+    <Compile Include="Models\FeedbackDo.cs" />
+    <Compile Include="Models\Feedbk.cs" />
+    <Compile Include="Models\Gmail.cs" />
+    <Compile Include="Models\HospPatient.cs" />
+    <Compile Include="Models\Invoice .cs" />
+    <Compile Include="Models\MAmbulance.cs" />
+    <Compile Include="Models\MAnnouncement.cs" />
+    <Compile Include="Models\MAppointment.cs" />
+    <Compile Include="Models\MAppointmentAd.cs" />
+    <Compile Include="Models\MComplaint.cs" />
+    <Compile Include="Models\MComplaintAd.cs" />
+    <Compile Include="Models\MDepartment.cs" />
+    <Compile Include="Models\MDoctor.cs" />
+    <Compile Include="Models\MDoctorAd.cs" />
+    <Compile Include="Models\MDriverAd.cs" />
+    <Compile Include="Models\Medicine.cs" />
+    <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\MInPatient.cs" />
+    <Compile Include="Models\MMedicineAd.cs" />
+    <Compile Include="Models\MPatient.cs" />
+    <Compile Include="Models\MPrescription.cs" />
+    <Compile Include="Models\MShedule.cs" />
+    <Compile Include="Models\Nurse.cs" />
+    <Compile Include="Models\NurseDo.cs" />
+    <Compile Include="Models\Patients.cs" />
+    <Compile Include="Models\Service.cs" />
+    <Compile Include="Models\UpdateDO.cs" />
+    <Compile Include="Models\VaccineDo.cs" />
+    <Compile Include="Models\Vaccines.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Viewmodel\Allview.cs" />
+    <Compile Include="Views\MDoctorAd.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="libman.json" />
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Patient\Login.cshtml" />
+    <Content Include="Views\Patient\Changepassword.cshtml" />
+    <Content Include="Views\Patient\Updateprofile.cshtml" />
+    <Content Include="Views\Patient\Depart.cshtml" />
+    <Content Include="Views\Patient\drive.cshtml" />
+    <Content Include="Views\Patient\doc.cshtml" />
+    <Content Include="Views\Patient\medicals.cshtml" />
+    <Content Include="Views\Shared\_PatientLayout.cshtml" />
+    <Content Include="Views\Doctor\DoctorList.cshtml" />
+    <Content Include="Views\Doctor\NewDoctor.cshtml" />
+    <Content Include="Views\Patient\Forgotpassword.cshtml" />
+    <Content Include="Views\Patient\Ambulanceses.cshtml" />
+    <Content Include="Views\Patient\Index.cshtml" />
+    <Content Include="Views\Patient\Dashboard.cshtml" />
+    <Content Include="Views\Complaint\ComplaintList.cshtml" />
+    <Content Include="Views\Complaint\RegisterComplaint.cshtml" />
+    <Content Include="Views\Admin\Dash.cshtml" />
+    <Content Include="Views\Admin\Department.cshtml" />
+    <Content Include="Views\Patient\Insertprofile.cshtml" />
+    <Content Include="Views\Patient\_DoctorDetails.cshtml" />
+    <Content Include="Views\Patient\_GetDriverId.cshtml" />
+    <Content Include="Views\Patient\PrecList.cshtml" />
+    <Content Include="Views\AmbulanceAd\AddAmbulanceAd.cshtml" />
+    <Content Include="Views\AmbulanceAd\AddDriverAd.cshtml" />
+    <Content Include="Views\AmbulanceAd\AmbulanceDriverAd.cshtml" />
+    <Content Include="Views\AmbulanceAd\AmbulanceListAd.cshtml" />
+    <Content Include="Views\AmbulanceAd\_Ambulance.cshtml" />
+    <Content Include="Views\AmbulanceAd\_Ambulancedriver.cshtml" />
+    <Content Include="Views\AnnouncementAd\AddAnnouncementAd.cshtml" />
+    <Content Include="Views\AnnouncementAd\AnnouncementList.cshtml" />
+    <Content Include="Views\AppointmentAd\AddAppointmentAd.cshtml" />
+    <Content Include="Views\AppointmentAd\AppointmentList.cshtml" />
+    <Content Include="Views\ComplaintAd\AddComplaintAd.cshtml" />
+    <Content Include="Views\ComplaintAd\ComplaintAdList.cshtml" />
+    <Content Include="Views\Dashboard\DashboardView.cshtml" />
+    <Content Include="Views\Department\AddDepartment.cshtml" />
+    <Content Include="Views\Department\DepartmentList.cshtml" />
+    <Content Include="Views\MedicineAd\AddMedicineAd.cshtml" />
+    <Content Include="Views\MedicineAd\MedicineAdList.cshtml" />
+    <Content Include="Views\PatientAd\AddPatientAd.cshtml" />
+    <Content Include="Views\PatientAd\PatientList.cshtml" />
+    <Content Include="Views\SheduleAd\AddSheduleAd.cshtml" />
+    <Content Include="Views\SheduleAd\SheduleList.cshtml" />
+    <Content Include="Views\Upload\AddImage.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\DoctorAd\AddDoctorAd.cshtml" />
+    <Content Include="Views\DoctorAd\DoctorListAd.cshtml" />
+    <Content Include="Views\Appointment\BookList.cshtml" />
+    <Content Include="Views\Appointment\AddBook.cshtml" />
+    <Content Include="Views\Patient\VerifyOTP.cshtml" />
+    <Content Include="Views\Outpatient\OutP.cshtml" />
+    <Content Include="Views\Inpatient\Inpatient.cshtml" />
+    <Content Include="Views\Menu\Menu.cshtml" />
+    <Content Include="Views\UpdateProfile\UpdateList.cshtml" />
+    <Content Include="Views\UpdateProfile\AddProfile.cshtml" />
+    <Content Include="Views\Ambulance\Ambulance.cshtml" />
+    <Content Include="Views\Attendance\AttendanceDetails.cshtml" />
+    <Content Include="Views\Billing\BillingId.cshtml" />
+    <Content Include="Views\Billing\InvoiceIP.cshtml" />
+    <Content Include="Views\Consult\Consult.cshtml" />
+    <Content Include="Views\Consult\ConsultDoc.cshtml" />
+    <Content Include="Views\Discharge\Discharge.cshtml" />
+    <Content Include="Views\Discharge\DischargeId.cshtml" />
+    <Content Include="Views\Email\Login.cshtml" />
+    <Content Include="Views\Email\VerifyOTP.cshtml" />
+    <Content Include="Views\Feedback\Feed.cshtml" />
+    <Content Include="Views\Inpatient\GetHospPatient.cshtml" />
+    <Content Include="Views\Nurse\GetNurses.cshtml" />
+    <Content Include="Views\Nurse\NurseDetails.cshtml" />
+    <Content Include="Views\Outpatient\OPID.cshtml" />
+    <Content Include="Views\Reception\Reception.cshtml" />
+    <Content Include="Views\Vaccination\Vaccine.cshtml" />
+    <Content Include="Views\Vaccination\VaccineList.cshtml" />
+    <Content Include="Views\Vaccination\VaccinesById.cshtml" />
+    <Content Include="Views\ConsultantAdmin\AddConsultant.cshtml" />
+    <Content Include="Views\ConsultantAdmin\ConsultantList.cshtml" />
+    <Content Include="Views\DischargeAdmin\AddDischarge.cshtml" />
+    <Content Include="Views\DischargeAdmin\DischargeListAd.cshtml" />
+    <Content Include="Views\FeedbackAdmin\AddFeedbackAd.cshtml" />
+    <Content Include="Views\FeedbackAdmin\FeedbackListAdmin.cshtml" />
+    <Content Include="Views\InPatientAdmin\AddInpatient.cshtml" />
+    <Content Include="Views\InPatientAdmin\InPatientListAd.cshtml" />
+    <Content Include="Views\InvoiceAdmin\InvoiceListAd.cshtml" />
+    <Content Include="Views\NurseAdmin\AddNurse.cshtml" />
+    <Content Include="Views\NurseAdmin\NurseList.cshtml" />
+    <Content Include="Views\OutPatientAdmin\AddOutPatient.cshtml" />
+    <Content Include="Views\OutPatientAdmin\OutPatientList.cshtml" />
+    <Content Include="Views\ReceptionAdmin\ReceptionFrontPage.cshtml" />
+    <Content Include="Views\VaccinationAdmin\AddVaccine.cshtml" />
+    <Content Include="Views\VaccinationAdmin\VaccineListAdmin.cshtml" />
+    <Content Include="Views\CommonOP\AddCommonOP.cshtml" />
+    <Content Include="Views\CommonOP\CommonList.cshtml" />
+    <Content Include="Views\BillAdmin\AddBill.cshtml" />
+    <Content Include="Views\BillAdmin\BillingId.cshtml" />
+    <Content Include="Views\BillAdmin\BillList.cshtml" />
+    <Content Include="Views\AttendanceAdmin\AddAttendance.cshtml" />
+    <Content Include="Views\AttendanceAdmin\AttendanceList.cshtml" />
+    <Content Include="Views\Feedback\FeedList.cshtml" />
+    <Content Include="Views\AmbulanceR\AmbList.cshtml" />
+    <Content Include="Views\AmbulanceR\AddAmb.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\AmbulanceAdmin\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58631</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44313/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

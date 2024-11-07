@@ -1,0 +1,153 @@
+﻿@model Hospital_System.Dash.DashboardDetails
+
+    @{
+        ViewBag.Title = "AddMedicineAd";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+
+    @using (Html.BeginForm("AddMedicineAd", "MedicineAd"))
+    {
+        <div class="form-container">
+            <div class="form-group">
+                <div class="form-item">
+                    <label>PatientId</label>
+                    @Html.TextBoxFor(m => m.MMedicineAd.PatientId, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.MMedicineAd.PatientId, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-item">
+                    <label>PatientName</label>
+                    @Html.TextBoxFor(m => m.MMedicineAd.PatientName, new { @required = "required", @placeholder = "Patient Name", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.MMedicineAd.PatientName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-item">
+                    <label>DoctorName</label>
+                    @Html.TextBoxFor(m => m.MMedicineAd.DoctorName, new { @required = "required", @placeholder = "Doctor Name", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.MMedicineAd.DoctorName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-item">
+                    <label>Problem</label>
+                    @Html.TextBoxFor(m => m.MMedicineAd.Problem, new { @required = "required", @placeholder = "Problem", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.MMedicineAd.Problem, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-item">
+                    <label>Description</label>
+                    @Html.TextBoxFor(m => m.MMedicineAd.Description, new { @required = "required", @placeholder = "Description", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.MMedicineAd.Description, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-item">
+                    <label>MedicineName</label>
+                    @Html.TextBoxFor(m => m.MMedicineAd.MedicineName, new { @class = "form-control" , @placeholder=" MedicineName"})
+                    @Html.ValidationMessageFor(m => m.MMedicineAd.MedicineName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-item">
+                    <label>Morning</label>
+                    @Html.DropDownListFor(m => m.MMedicineAd.Morning, new SelectList(new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "Yes", Text = "Yes" },
+                        new SelectListItem { Value = "No", Text = "No" },
+                    }, "Value", "Text"), "Select", new { @class = "form-control" })
+                </div>
+                <div class="form-item">
+                    <label>Afternoon</label>
+                    @Html.DropDownListFor(m => m.MMedicineAd.Afternoon, new SelectList(new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "Yes", Text = "Yes" },
+                        new SelectListItem { Value = "No", Text = "No" },
+                    }, "Value", "Text"), "Select", new { @class = "form-control" })
+                </div>
+                <div class="form-item">
+                    <label>Night</label>
+                    @Html.DropDownListFor(m => m.MMedicineAd.Night, new SelectList(new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "Yes", Text = "Yes" },
+                        new SelectListItem { Value = "No", Text = "No" },
+                    }, "Value", "Text"), "Select", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" value="Submit" class="submit-button">
+                <button type="button" class="back-button" onclick="Back()"> Back </button>
+            </div>
+        </div>
+    }
+
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .form-item {
+            flex: 1 1 45%;
+            margin-right: 15px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+            .form-item:last-child {
+                margin-right: 0;
+            }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .text-danger {
+            color: red;
+        }
+
+        .submit-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+            .submit-button:hover {
+                background-color: #0056b3;
+            }
+
+        .back-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .back-button:hover {
+                background-color: #0056b3;
+            }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+    </style>
+
+    <script>
+        function Back() {
+            window.location.href = "/Dashboard/DashboardView";
+        }
+    </script>

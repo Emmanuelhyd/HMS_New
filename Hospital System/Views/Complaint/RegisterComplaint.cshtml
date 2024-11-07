@@ -1,0 +1,133 @@
+﻿@model Hospital_System.Viewmodel.Allview
+
+@{
+    ViewBag.Title = "Register Complaint";
+    Layout = "~/Views/Shared/_PatientLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Register Complaint</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-container {
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 90%; /* Set width for responsiveness */
+            max-width: 500px; /* Max width for larger screens */
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%; /* Full width for better layout */
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        input[type="submit"],
+        .btn-back {
+            background-color: #007bff; /* Primary button color */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%; /* Full width for buttons */
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+            input[type="submit"]:hover,
+            .btn-back:hover {
+                background-color: #0056b3; /* Darker shade on hover */
+            }
+
+        .btn-back {
+            background-color: dodgerblue; /* Back button color */
+            display: flex;
+            align-items: center;
+        }
+
+            .btn-back i {
+                margin-right: 5px; /* Space between icon and text */
+            }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div>
+            <button type="button" class="btn-back" onclick="Back()" style="width: 10%;">
+                <i class="fas fa-arrow-left"></i>   
+            </button>
+        </div>
+        @using (Html.BeginForm("RegisterComplaint", "Complaint"))
+        {
+            <h2>Register Your Complaints!</h2>
+
+            <div>
+                @Html.LabelFor(m => m.mComplaint.Id)
+                @Html.TextBoxFor(m => m.mComplaint.Id, new { @class = "form-control", @placeholder = "Enter Complaint ID" })
+            </div>
+            <div>
+                @Html.LabelFor(m => m.mComplaint.Name)
+                @Html.TextBoxFor(m => m.mComplaint.Name, new { @class = "form-control", @placeholder = "Enter Your Name" })
+            </div>
+            <div>
+                @Html.LabelFor(m => m.mComplaint.Complaint)
+                @Html.TextAreaFor(m => m.mComplaint.Complaint, new { @class = "form-control", @placeholder = "Describe your complaint" })
+            </div>
+            <div>
+                @Html.LabelFor(m => m.mComplaint.PhoneNumber)
+                @Html.TextBoxFor(m => m.mComplaint.PhoneNumber, new { @class = "form-control", @placeholder = "Enter Your Phone Number" })
+            </div>
+            <div>
+                <input type="submit" value="Register Complaint">
+            </div>
+
+            @*<div>
+                <button type="button" class="btn-back" onclick="Back()">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+            </div>*@
+        }
+    </div>
+</body>
+</html>
+
+<script>
+    function Back() {
+        window.location.href = "Dashboard";
+    }
+</script>

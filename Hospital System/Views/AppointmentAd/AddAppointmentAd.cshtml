@@ -1,0 +1,108 @@
+﻿@model Hospital_System.Dash.DashboardDetails
+
+@{
+    ViewBag.Title = "Add Appointment";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+@using (Html.BeginForm("AddAppointmentAd", "AppointmentAd"))
+{
+    <div class="container mt-5">
+        <h2>Add Appointment</h2>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label for="Id">Id</label>
+            @Html.TextBoxFor(m => m.MAppointmentAd.Id, new { @class = "form-control", @placeholder = "Enter Id" })
+            @Html.ValidationMessageFor(m => m.MAppointmentAd.Id, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="PatientName">Patient Name</label>
+            @Html.TextBoxFor(m => m.MAppointmentAd.PatientName, new { @class = "form-control", @required = "required", @placeholder = "Enter Patient Name" })
+            @Html.ValidationMessageFor(m => m.MAppointmentAd.PatientName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="PatientType">Patient Type</label>
+            @Html.TextBoxFor(m => m.MAppointmentAd.PatientType, new { @class = "form-control", @required = "required", @placeholder = "Enter Patient Type" })
+            @Html.ValidationMessageFor(m => m.MAppointmentAd.PatientType, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="Gender">Gender</label>
+            @Html.DropDownListFor(m => m.MAppointmentAd.Gender, new SelectList(new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Male", Text = "Male" },
+                new SelectListItem { Value = "Female", Text = "Female" },
+                new SelectListItem { Value = "Others", Text = "Others" },
+            }, "Value", "Text"), "Select Gender", new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label for="Problem">Problem</label>
+            @Html.TextBoxFor(m => m.MAppointmentAd.Problem, new { @class = "form-control", @required = "required", @placeholder = "Enter Problem" })
+            @Html.ValidationMessageFor(m => m.MAppointmentAd.Problem, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="PhoneNumber">Phone Number</label>
+            @Html.TextBoxFor(m => m.MAppointmentAd.PhoneNumber, new { @class = "form-control", @required = "required", @placeholder = "Enter Phone Number" })
+            @Html.ValidationMessageFor(m => m.MAppointmentAd.PhoneNumber, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="Address">Address</label>
+            @Html.TextBoxFor(m => m.MAppointmentAd.Address, new { @class = "form-control", @required = "required", @placeholder = "Enter Address" })
+            @Html.ValidationMessageFor(m => m.MAppointmentAd.Address, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="Date">Date</label>
+            @Html.TextBoxFor(m => m.MAppointmentAd.Date, "{0:yyyy-MM-dd}", new { @class = "form-control", @required = "required", @placeholder = "Appointment Date", @type = "date" })
+            @Html.ValidationMessageFor(m => m.MAppointmentAd.Date, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="Time">Time</label>
+            @Html.TextBoxFor(m => m.MAppointmentAd.Time, new { @class = "form-control", @required = "required", @placeholder = "Enter Time" })
+            @Html.ValidationMessageFor(m => m.MAppointmentAd.Time, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="Description">Description</label>
+            @Html.TextBoxFor(m => m.MAppointmentAd.Description, new { @class = "form-control", @required = "required", @placeholder = "Enter Description" })
+            @Html.ValidationMessageFor(m => m.MAppointmentAd.Description, "", new { @class = "text-danger" })
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="button" class="btn btn-primary" onclick="Back()">Back</button>
+    </div>
+}
+
+<script>
+    function Back() {
+        window.location.href = "/Dashboard/DashboardView";
+    }
+</script>
+
+<style>
+    .form-control {
+        display: block;
+        width: 35%;
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+</style>

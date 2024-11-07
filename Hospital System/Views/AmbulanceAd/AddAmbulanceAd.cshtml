@@ -1,0 +1,109 @@
+﻿@model Hospital_System.Dash.DashboardDetails
+
+@{
+    ViewBag.Title = "AddAmbulanceAd";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("AddAmbulanceAd", "AmbulanceAd"))
+{
+    <div class="form-container">
+        <div class="form-group">
+            <label>@Html.LabelFor(m => m.mAmbulance.Id)</label>
+            @Html.TextBoxFor(m => m.mAmbulance.Id, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>@Html.LabelFor(m => m.mAmbulance.Name)</label>
+            @Html.TextBoxFor(m => m.mAmbulance.Name, new { @required = "required", @placeholder = "Enter your Name", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.mAmbulance.Name, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label>@Html.LabelFor(m => m.mAmbulance.AmbulanceId)</label>
+            @Html.TextBoxFor(m => m.mAmbulance.AmbulanceId, new { @required = "required", @placeholder = "Enter your AmbulanceId", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.mAmbulance.AmbulanceId, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label>@Html.LabelFor(m => m.mAmbulance.AmbulanceStatus)</label>
+            @Html.DropDownListFor(m => m.mAmbulance.AmbulanceStatus, new SelectList(new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Active", Text = "Active" },
+                new SelectListItem { Value = "Inactive", Text = "Inactive" },
+            }, "Value", "Text"), "Select Status", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>@Html.LabelFor(m => m.mAmbulance.AmbulanceDriver)</label>
+            @Html.TextBoxFor(m => m.mAmbulance.AmbulanceDriver, new { @required = "required", @placeholder = "Enter your AmbulanceDriver", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.mAmbulance.AmbulanceDriver, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label>@Html.LabelFor(m => m.mAmbulance.AmbulanceDriverId)</label>
+            @Html.TextBoxFor(m => m.mAmbulance.AmbulanceDriverId, new { @required = "required", @placeholder = "Enter your AmbulanceDriverId", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.mAmbulance.AmbulanceDriverId, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-actions">
+            <input type="submit" class="back-button" value="Submit" />
+            <button type="button" class="back-button" onclick="Back()">Back</button>
+        </div>
+    </div>
+}
+
+<script>
+    function Back() {
+        window.location.href = "/Dashboard/DashboardView";
+    }
+</script>
+
+<style>
+    .form-container {
+        position: relative;
+        width: 85%;
+        margin: 0 auto; /* Center the form */
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+    .form-control {
+        width: 35%; 
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        color: #495057;
+        background-color: #fff;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    .back-button {
+        background-color: #007bff; /* Primary color */
+        color: white; /* Text color */
+        border: none; /* No border */
+        border-radius: 5px; /* Rounded corners */
+        padding: 10px 20px; /* Padding for size */
+        font-size: 16px; /* Font size */
+        cursor: pointer; /* Pointer cursor on hover */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+        margin: 5px; /* Space between buttons */
+    }
+
+        .back-button:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+        }
+
+        .back-button:focus {
+            outline: none; /* Remove outline on focus */
+        }
+</style>

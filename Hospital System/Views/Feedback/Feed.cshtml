@@ -1,0 +1,206 @@
+﻿@model Hospital_System.Models.Feedbk
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+@using (Html.BeginForm())
+{
+    <div>
+        <h1>Add Feedback</h1>
+        <div>
+            @Html.LabelFor(m => m.Id)
+            @Html.TextBoxFor(m => m.Id)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @required = "required", @placeholder = "Enter your Name" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Age)
+            @Html.TextBoxFor(m => m.Age, new { @required = "required", @placeholder = "Age" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email, new { @required = "required", @placeholder = "Email" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.phoneNumber)
+            @Html.TextBoxFor(m => m.phoneNumber, new { @required = "required", @placeholder = "Phone Number" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Feedback)
+            @Html.TextBoxFor(m => m.Feedback, new { @required = "required", @placeholder = "Your Valuable Feedback" })
+        </div>
+
+        <div class="rating-container">
+            @Html.LabelFor(m => m.Doctor)
+            <div class="star-rating" data-input="RatingValue1">
+                @for (int i = 1; i <= 5; i++)
+                {
+                    <span class="fas fa-star @(int.TryParse(Model.Doctor ?? "0", out int doctorRating) && doctorRating >= i ? "active" : "")" data-value="@i"></span>
+                }
+            </div>
+            <input type="hidden" id="RatingValue1" name="Doctor" value="@(Model.Doctor ?? "0")" />
+        </div>
+
+        <div class="rating-container">
+            @Html.LabelFor(m => m.Staff)
+            <div class="star-rating" data-input="RatingValue2">
+                @for (int i = 1; i <= 5; i++)
+                {
+                    <span class="fas fa-star @(int.TryParse(Model.Staff ?? "0", out int staffRating) && staffRating >= i ? "active" : "")" data-value="@i"></span>
+                }
+            </div>
+            <input type="hidden" id="RatingValue2" name="Staff" value="@(Model.Staff ?? "0")" />
+        </div>
+
+        <div class="rating-container">
+            @Html.LabelFor(m => m.Cleaning)
+            <div class="star-rating" data-input="RatingValue3">
+                @for (int i = 1; i <= 5; i++)
+                {
+                    <span class="fas fa-star @(int.TryParse(Model.Cleaning ?? "0", out int cleaningRating) && cleaningRating >= i ? "active" : "")" data-value="@i"></span>
+                }
+            </div>
+            <input type="hidden" id="RatingValue3" name="Cleaning" value="@(Model.Cleaning ?? "0")" />
+        </div>
+
+        <div class="rating-container">
+            @Html.LabelFor(m => m.Review)
+            <div class="star-rating" data-input="RatingValue4">
+                @for (int i = 1; i <= 5; i++)
+                {
+                    <span class="fas fa-star @(int.TryParse(Model.Review ?? "0", out int reviewRating) && reviewRating >= i ? "active" : "")" data-value="@i"></span>
+                }
+            </div>
+            <input type="hidden" id="RatingValue4" name="Review" value="@(Model.Review ?? "0")" />
+        </div>
+
+        <div>
+            <input type="submit" value="Submit" class="submit-button">
+        </div>
+    </div>
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding: 10px;
+    }
+
+    .form-container {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    div {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #555;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        transition: border-color 0.3s;
+        box-sizing: border-box;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    .submit-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s;
+    }
+
+    .submit-button:hover {
+        background-color: #0056b3;
+    }
+
+    .rating-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .star-rating {
+        display: flex;
+        margin-top: 5px;
+    }
+
+    .star-rating .fa-star {
+        color: lightgray;
+        margin-right: 5px;
+        transition: color 0.3s;
+        cursor: pointer;
+    }
+
+    .star-rating .fa-star.active {
+        color: gold;
+    }
+
+    media (max-width: 400px) {
+        .form-container {
+            padding: 15px;
+        }
+    }
+</style>
+
+<script>
+    function setupStarRating(starContainer) {
+        const stars = starContainer.querySelectorAll('.fa-star');
+        const ratingInput = document.getElementById(starContainer.dataset.input);
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const value = star.getAttribute('data-value');
+
+                stars.forEach(s => s.classList.remove('active'));
+
+                for (let i = 0; i < value; i++) {
+                    stars[i].classList.add('active');
+                }
+
+                ratingInput.value = value;
+            });
+        });
+    }
+
+    document.querySelectorAll('.star-rating').forEach(setupStarRating);
+</script>

@@ -1,0 +1,59 @@
+﻿@model Hospital_System.Viewmodel.Allview
+
+<div id="doctorDetails" style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #fff; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+    <h3 style="text-align: center; color: #343a40;">Doctor Details</h3>
+    <div style="margin-bottom: 15px;">
+        <strong>Name:</strong> <span>@Model.doctors.FullName</span>
+    </div>
+    <div style="margin-bottom: 15px;">
+        <strong>Email:</strong> <span>@Model.doctors.Email</span>
+    </div>
+    <div style="margin-bottom: 15px;">
+        <strong>Department:</strong> <span>@Model.doctors.Department</span>
+    </div>
+    <div style="margin-bottom: 15px;">
+        <strong>Education:</strong> <span>@Model.doctors.Education</span>
+    </div>
+    <div style="margin-bottom: 15px;">
+        <strong>Designation:</strong> <span>@Model.doctors.Designation</span>
+    </div>
+    <div style="margin-bottom: 15px;">
+        <strong>Status:</strong> <span>@Model.doctors.Status</span>
+    </div>
+    <div style="margin-bottom: 15px;">
+        <strong>Phone:</strong> <span>@Model.doctors.PhoneNo</span>
+    </div>
+
+    <button onclick="closePopup()" class="back">Back</button>
+</div>
+
+<script>
+    function closePopup() {
+        $('#doctorPopup').hide();
+        $('#overlay').hide();
+    }
+</script>
+
+<style>
+    .back {
+        width: 100px;
+        height: 35px;
+        color: white;
+        background-color: #007bff; /* Blue background */
+        border-radius: 5px;
+        border: none; /* Remove border */
+        cursor: pointer; /* Pointer on hover */
+        transition: background-color 0.3s; /* Smooth transition */
+        font-size: 16px; /* Increase font size */
+        margin-top: 20px; /* Space from details above */
+    }
+
+        .back:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+    #doctorDetails {
+        max-width: 400px; /* Limit max width for better appearance */
+        margin: 0 auto; /* Center align */
+    }
+</style>
