@@ -45,6 +45,7 @@ namespace Hospital_System.DAL
                             Description = row["Description"].ToString(),
                             Gender = row["Gender"].ToString(),
                             Address = row["Address"].ToString(),
+                            //PatientType = row["PatientType"].ToString(),
                             PhoneNumber = row["PhoneNumber"].ToString(),
                             
 
@@ -65,7 +66,7 @@ namespace Hospital_System.DAL
             reader = cmd.ExecuteReader();
             if (reader.Read())
             {
-                ids = Convert.ToInt32(reader["Id"]);
+                ids = Convert.ToInt32(reader["PatientId"]);
             }
 
             reader.Close();
@@ -113,6 +114,7 @@ namespace Hospital_System.DAL
                     mInPatient.Problem = reader["Problem"].ToString();
                     mInPatient.Description = reader["Description"].ToString();
                     mInPatient.Gender = reader["Gender"].ToString();
+                    //mInPatient.PatientType = reader["PatientType"].ToString();
                     mInPatient.Address = reader["Address"].ToString();
                     mInPatient.PhoneNumber = reader["PhoneNumber"].ToString();
                     
@@ -149,6 +151,7 @@ namespace Hospital_System.DAL
                 mInPatient.Problem = reader["Problem"].ToString();
                 mInPatient.Description = reader["Description"].ToString();
                 mInPatient.Gender = reader["Gender"].ToString();
+                //mInPatient.PatientType = reader["PatientType"].ToString();
                 mInPatient.Address = reader["Address"].ToString();
                 mInPatient.PhoneNumber = reader["PhoneNumber"].ToString();
                

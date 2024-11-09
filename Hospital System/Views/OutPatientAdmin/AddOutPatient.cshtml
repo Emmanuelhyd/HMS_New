@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "AddOutpatient";
+    Layout = null;
+
 }
 
 
@@ -35,41 +37,21 @@
         </select>
     </div>
     <div>
+        @Html.LabelFor(m => m.PatientType)
+        @Html.TextBoxFor(m => m.PatientType, new { @required = "required", @placeholder = "Address" })
+    </div>
+    <div>
         @Html.LabelFor(m => m.Address)
         @Html.TextBoxFor(m => m.Address, new { @required = "required", @placeholder = "Address" })
     </div>
     <div>
         @Html.LabelFor(m => m.PhoneNumber)
-        @Html.TextBoxFor(m => m.PhoneNumber, new
-        {
-            @required = "required",
-            @placeholder = "Phone Number",
-            @class = "form-control",
-            @type = "tel",
-            @pattern = @"\d{3}-\d{3}-\d{4}", // Example format: 123-456-7890
-            @title = "Format: 123-456-7890"
-        })
-        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+        @Html.TextBoxFor(m => m.PhoneNumber, new { @required = "required", @placeholder = "Phone Number" })
     </div>
     <div>
         <input type="submit" value="Submit">
     </div>
 }
-
-
-
-
-<script>// Optional: Add JavaScript to format the phone number on input
-    document.querySelector('input[name="PhoneNumber"]').addEventListener('input', function (e) {
-        let input = e.target.value.replace(/\D/g, ''); // Remove non-digits
-        if (input.length > 3 && input.length <= 6) {
-            input = input.slice(0, 3) + '-' + input.slice(3); // Format as 123-456
-        } else if (input.length > 6) {
-            input = input.slice(0, 3) + '-' + input.slice(3, 6) + '-' + input.slice(6, 10); // Format as 123-456-7890
-        }
-        e.target.value = input;
-    });</script>
-
 
 <style>
     body {

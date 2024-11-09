@@ -16,20 +16,17 @@
 
 <style>
     body {
+        background-color: #f8f9fa;
         font-family: Arial, sans-serif;
-        background-color: #f7f9fc; 
-        margin: 0;
-        padding: 0;
     }
 
     .form-container {
-        width: 80%; 
-        max-width: 600px; 
-        margin: 40px auto; 
+        width: 60%;
+        margin: 30px auto;
         padding: 20px;
         border-radius: 8px;
-        background-color: white; 
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
     }
 
     .form-row {
@@ -48,7 +45,6 @@
             font-weight: bold;
             margin-bottom: 5px;
             display: block;
-            color: #333;
         }
 
     .form-control {
@@ -61,9 +57,9 @@
     }
 
         .form-control:focus {
-            border-color: #66afe9;
+            border-color: #007bff;
             outline: none;
-            box-shadow: 0 0 5px rgba(102, 175, 233, .6);
+            box-shadow: 0 0 5px rgba(0, 123, 255, .6);
         }
 
     .btn-primary {
@@ -73,8 +69,10 @@
         padding: 10px 15px;
         border-radius: 4px;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
-        transition: background-color 0.3s ease; 
     }
 
         .btn-primary:hover {
@@ -97,8 +95,10 @@
         border-radius: 5px;
         padding: 10px 15px;
         cursor: pointer;
-        transition: background-color 0.3s ease; 
-        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30%;
     }
 
         .btn:hover {
@@ -111,13 +111,7 @@
     <div class="form-container">
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "validation-summary" })
-        <div>
-            <button type="button" class="btn" onclick="Back()">
-                <i class="fas fa-arrow-left"></i>
-            </button>
-           
-        </div>
-        <br />
+
         <div class="form-row">
             <div class="form-group">
                 @Html.LabelFor(m => m.mAppointmentAd.Id)
@@ -131,24 +125,18 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(m => m.mAppointmentAd.PatientType)
-                @Html.DropDownListFor(m => m.mAppointmentAd.PatientType, Model.GetTypes, "Select Patient Type", new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.mAppointmentAd.PatientType, "", new { @class = "text-danger" })
-            </div>
-
-            <div class="form-group">
                 @Html.LabelFor(m => m.mAppointmentAd.Gender)
                 @Html.DropDownListFor(m => m.mAppointmentAd.Gender, new SelectList(new List<SelectListItem>
                 {
                     new SelectListItem { Value = "male", Text = "Male" },
                     new SelectListItem { Value = "female", Text = "Female" },
                     new SelectListItem { Value = "others", Text = "Others" }
-                }, "Value", "Text"), "Select Gender", new { @class = "form-control" })
+                }, "Value", "Text"), "Select Gender", new { @class = "form-control", @required = "required" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.mAppointmentAd.Problem)
-                @Html.DropDownListFor(m => m.mAppointmentAd.Problem, Model.Problems, "Select Problem", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.mAppointmentAd.Problem, Model.Problems, "Select Problem", new { @class = "form-control", @required = "required" })
                 @Html.ValidationMessageFor(m => m.mAppointmentAd.Problem, "", new { @class = "text-danger" })
             </div>
 
@@ -165,12 +153,19 @@
                     new SelectListItem { Value = "Oncology", Text = "Oncology" },
                     new SelectListItem { Value = "Radiology", Text = "Radiology" },
                     new SelectListItem { Value = "Dermatology", Text = "Dermatology" }
-                }, "Value", "Text"), "Select Department", new { @class = "form-control" })
+                }, "Value", "Text"), "Select Department", new { @required = "required", @class = "form-control" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.mAppointmentAd.PhoneNumber)
-                @Html.TextBoxFor(m => m.mAppointmentAd.PhoneNumber, new { @required = "required", @placeholder = "Phone Number", @class = "form-control" })
+                @Html.TextBoxFor(m => m.mAppointmentAd.PhoneNumber, new
+                {
+                    @required = "required",
+                    @placeholder = "Phone Number",
+                    @class = "form-control",
+                    @pattern = @"^[6789]\d{9}$",
+                    @title = "Please enter a valid 10-digit phone number starting with 6, 7, 8, or 9."
+                })
                 @Html.ValidationMessageFor(m => m.mAppointmentAd.PhoneNumber, "", new { @class = "text-danger" })
             </div>
 
@@ -199,9 +194,9 @@
             </div>
         </div>
 
-        <div>
+        <div style="display: flex; justify-content: space-between;">
             <input type="submit" class="btn btn-primary" value="Submit">
+            <button type="button" class="btn" onclick="Back()"><i class="fas fa-arrow-left"></i> Back</button>
         </div>
-
     </div>
 }

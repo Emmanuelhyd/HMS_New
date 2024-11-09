@@ -17,11 +17,39 @@
         function Back() {
             window.location.href = "Dashboard";
         }
+
+        // Function to show the popup with message
+        function showPopup(message, type) {
+            const popup = document.getElementById("popup");
+            const popupMessage = document.getElementById("popupMessage");
+            const popupIcon = document.getElementById("popupIcon");
+
+            // Set the icon and message based on the type
+            if (type === 'success') {
+                popupIcon.innerHTML = "<i class='fas fa-check-circle'></i>";  // Checkmark icon
+                popup.style.backgroundColor = "#28a745"; // Green for success
+            } else if (type === 'error') {
+                popupIcon.innerHTML = "<i class='fas fa-exclamation-circle'></i>"; // Exclamation mark icon
+                popup.style.backgroundColor = "#dc3545"; // Red for error
+            } else {
+                popupIcon.innerHTML = "<i class='fas fa-info-circle'></i>"; // Info icon
+                popup.style.backgroundColor = "#17a2b8"; // Blue for information
+            }
+
+            popupMessage.innerText = message;
+            popup.style.display = 'block';
+
+            // Close the popup after 3 seconds
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 3000);
+        }
     </script>
+
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f7f9fc; /* Light gray background */
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
             margin: 0;
             padding: 0;
         }
@@ -30,16 +58,16 @@
             max-width: 800px;
             margin: 30px auto;
             padding: 20px;
-            background-color: #ffffff; /* White background for form */
+            background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .form-container h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #007bff; /* Primary color */
-        }
+            .form-container h1 {
+                text-align: center;
+                margin-bottom: 20px;
+                color: #007bff;
+            }
 
         .form-row {
             display: flex;
@@ -53,182 +81,225 @@
             margin-bottom: 10px;
         }
 
-        .form-group:last-child {
-            margin-right: 0;
-        }
+            .form-group:last-child {
+                margin-right: 0;
+            }
 
-        .form-group label {
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #495057; /* Dark gray */
-        }
+            .form-group label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #495057;
+            }
 
-        .form-group input,
-        .form-group select {
-            width: 100%; /* Full-width inputs */
-            padding: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            box-sizing: border-box;
-            transition: border-color 0.3s;
-        }
+            .form-group input,
+            .form-group select {
+                width: 75%;
+                padding: 10px;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
 
-        .form-group input:focus,
-        .form-group select:focus {
-            border-color: #007bff; /* Highlight border on focus */
-            outline: none;
-        }
-
-        .form-group .text-danger {
-            color: #d78484; /* Error message color */
-            font-size: 0.875rem;
-            font-weight: 600;
-            font-style: oblique;
-        }
+            .form-group .text-danger {
+                color: #d78484;
+                font-size: 0.875rem;
+                font-weight: 600;
+                font-style: oblique;
+            }
 
         .btn-submit {
             display: block;
-            width: 100%; /* Full-width button */
+            width: 53%;
             padding: 12px;
             font-size: 1rem;
             color: #fff;
-            background-color: #007bff; /* Primary button color */
+            background-color: dodgerblue;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
-            margin-top: 10px; /* Add margin for spacing */
+            margin: 10px auto;
         }
 
-        .btn-submit:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-            transform: scale(1.05);
-        }
+            .btn-submit:hover {
+                background-color: #218838;
+                transform: scale(1.05);
+            }
 
-        .back-icon {
-            text-decoration: none;
-            color: #007bff;
-            align-items: center;
-            margin-bottom: 20px;
-            font-size: 30px;
-            display: flex;
-            align-items: center;
-        }
-
-        .back-icon i {
-            margin-right: 8px; /* Space between icon and text */
-        }
-
-        .message {
-            text-align: center;
+        .button-back {
+            display: inline-block;
             margin: 10px 0;
-            font-weight: bold;
-            color: #28a745; /* Success message color */
+            padding: 10px 20px;
+            color: white;
+            background-color: dodgerblue;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
         }
 
-        media (max-width: 600px) {
-            .form-row {
-                flex-direction: column; /* Stack elements on small screens */
+            .button-back:hover {
+                background-color: #0056b3;
             }
-            .form-group {
-                margin-right: 0; /* Remove right margin for small screens */
-            }
+
+        /* Popup Style */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            z-index: 1000;
+            width: 250px;
+            text-align: center;
         }
+
+            #popup i {
+                font-size: 24px;
+                margin-right: 10px;
+            }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <div>
-            <a href="javascript:void(0);" onclick="Back()" class="back-icon">
-                <i class="fas fa-arrow-circle-left"></i>
-              
-            </a>
-        </div>
-        <h1>@ViewBag.Title</h1>
+    <!-- Popup for success/error messages -->
+    <div id="popup">
+        <div id="popupIcon"></div>
+        <div id="popupMessage"></div>
+    </div>
 
-        <div style="margin-bottom: 20px;">
-            <strong>Patient ID: </strong>@ViewBag.PatientId
+    <div>
+        <div class="form-container">
+            <div>
+                <a href="javascript:void(0);" onclick="Back()" class="back-icon">
+                    <i class="fas fa-arrow-circle-left"> </i>
+                </a>
+            </div>
+            <h1>@ViewBag.Title</h1>
+
+            <div style="margin-bottom: 20px;">
+                <strong>Patient ID:</strong> @ViewBag.PatientId<br />
+                <strong>User Name:</strong> @Session["UserName"]<br />
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Patients.PatientId)
+
+                <div class="form-row">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Patients.UserName)
+                        @Html.TextBoxFor(m => m.Patients.UserName, new { @class = "form-control", @readonly = "readonly", Value = @Session["UserName"] })
+                        @Html.ValidationMessageFor(m => m.Patients.UserName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Patients.FirstName)
+                        @Html.TextBoxFor(m => m.Patients.FirstName, new { @placeholder = "First Name", @class = "form-control", @required = "required", Value = Session["FirstName"] })
+                        @Html.ValidationMessageFor(m => m.Patients.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Patients.LastName)
+                        @Html.TextBoxFor(m => m.Patients.LastName, new { @placeholder = "Last Name", @class = "form-control", Value = @Session["LastName"] })<br />
+                        @Html.ValidationMessageFor(m => m.Patients.LastName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Patients.Email)
+                        @Html.TextBoxFor(m => m.Patients.Email, new { @required = "required", @placeholder = "Email", @class = "form-control", @type = "email", Value = @Session["Email"] })<br />
+                        @Html.ValidationMessageFor(m => m.Patients.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Patients.BloodGroup)
+                        @Html.DropDownListFor(m => m.Patients.BloodGroup, Model.BloodGroups, "Select Blood Group", new { @class = "form-control", @required = "required", Value = @Session["BloodGroups"] })<br />
+                        @Html.ValidationMessageFor(m => m.Patients.BloodGroup, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Patients.Gender)
+                        @Html.DropDownListFor(m => m.Patients.Gender, Model.GetGenders, "Select Gender", new { @class = "form-control", @required = "required", Value = @Session["Gender"] })<br />
+                        @Html.ValidationMessageFor(m => m.Patients.Gender, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Patients.Age)
+                        <div style="display: flex; align-items: center;">
+                            <button type="button" class="btn btn-secondary" onclick="changeAge(1)" style="border-radius: 0; border: 1px solid #ccc;">▲</button>
+                            @Html.TextBoxFor(m => m.Patients.Age, new { @placeholder = "Age", @class = "form-control", @required = "required", @min = "0", @max = "120", @id = "ageInput", @style = "width: 70px; text-align: center;", Value = @Session["Age"] })
+                            <button type="button" class="btn btn-secondary" onclick="changeAge(-1)" style="border-radius: 0; border: 1px solid #ccc;">▼</button>
+                        </div>
+                        <br />
+                        @Html.ValidationMessageFor(m => m.Patients.Age, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Patients.PhoneNo)
+                        @Html.TextBoxFor(m => m.Patients.PhoneNo, new
+                        {
+                            @class = "form-control",
+                            placeholder = "Enter Phone Number",
+                            @pattern = @"^[6789]\d{9}$",
+                            @title = "Phone number must be 10 digits and start with 6, 7, 8, or 9.",
+                            @required = "required"
+                        })<br />
+                        @Html.ValidationMessageFor(m => m.Patients.PhoneNo, "", new { @class = "text-danger", Value = @Session["PhoneNo"] })
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Patients.EmergencyContact)
+                        @Html.TextBoxFor(m => m.Patients.EmergencyContact, new { @class = "form-control", placeholder = "Enter Emergency Contact", Value = @Session["EmergencyContact"] })<br />
+                        @Html.ValidationMessageFor(m => m.Patients.EmergencyContact, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Patients.Address)
+                        @Html.TextBoxFor(m => m.Patients.Address, new { @placeholder = "Address", @class = "form-control", @required = "required", Value = @Session["Address"] })<br />
+                        @Html.ValidationMessageFor(m => m.Patients.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <input type="submit" value="Update Profile" class="btn-submit" />
+                </div>
+            }
+
         </div>
+    </div>
+
+    <script>
 
         @if (TempData["Message"] != null)
         {
-            <div class="message">@TempData["Message"]</div>
+            <text>
+                showPopup('@TempData["Message"]', 'success');
+            </text>
         }
+    </script>
+    <script>
+        function changeAge(delta) {
+            const ageInput = document.getElementById('ageInput');
+            let currentValue = parseInt(ageInput.value) || 0; // Default to 0 if not a number
+            let newValue = currentValue + delta;
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(m => m.Patients.PatientId)
+            // Ensure new value is within the min and max limits
+            if (newValue < 0) newValue = 0;
+            if (newValue > 120) newValue = 120;
 
-            <div class="form-row">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Patients.UserName)
-                    @Html.TextBoxFor(m => m.Patients.UserName, new { @placeholder = "User Name", @class = "form-control" })<br />
-                    @Html.ValidationMessageFor(m => m.Patients.UserName, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Patients.FirstName)
-                    @Html.TextBoxFor(m => m.Patients.FirstName, new { @placeholder = "First Name", @class = "form-control" })<br />
-                    @Html.ValidationMessageFor(m => m.Patients.FirstName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Patients.LastName)
-                    @Html.TextBoxFor(m => m.Patients.LastName, new { @placeholder = "Last Name", @class = "form-control" })<br />
-                    @Html.ValidationMessageFor(m => m.Patients.LastName, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Patients.Email)
-                    @Html.TextBoxFor(m => m.Patients.Email, new { @placeholder = "Email", @class = "form-control" })<br />
-                    @Html.ValidationMessageFor(m => m.Patients.Email, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Patients.BloodGroup)
-                    @Html.DropDownListFor(m => m.Patients.BloodGroup, Model.BloodGroups, "Select Blood Group", new { @class = "form-control" })<br />
-                    @Html.ValidationMessageFor(m => m.Patients.BloodGroup, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Patients.Gender)
-                    @Html.DropDownListFor(m => m.Patients.Gender, Model.GetGenders, "Select Gender", new { @class = "form-control" })<br />
-                    @Html.ValidationMessageFor(m => m.Patients.Gender, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Patients.Age)
-                    @Html.TextBoxFor(m => m.Patients.Age, new { @placeholder = "Age", @class = "form-control" })<br />
-                    @Html.ValidationMessageFor(m => m.Patients.Age, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Patients.PhoneNo)
-                    @Html.TextBoxFor(m => m.Patients.PhoneNo, new { @class = "form-control", placeholder = "Enter Phone Number" })<br />
-                    @Html.ValidationMessageFor(m => m.Patients.PhoneNo, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Patients.EmergencyContact)
-                    @Html.TextBoxFor(m => m.Patients.EmergencyContact, new { @class = "form-control", placeholder = "Enter Emergency Contact" })<br />
-                    @Html.ValidationMessageFor(m => m.Patients.EmergencyContact, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Patients.Address)
-                    @Html.TextBoxFor(m => m.Patients.Address, new { @placeholder = "Address", @class = "form-control" })<br />
-                    @Html.ValidationMessageFor(m => m.Patients.Address, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-row">
-                <input type="submit" value="Update Profile" class="btn-submit" />
-            </div>
+            ageInput.value = newValue; // Update the input value
         }
-    </div>
+    </script>
+
 </body>
 </html>

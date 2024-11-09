@@ -40,16 +40,16 @@ namespace Hospital_System.Controllers
         public ActionResult Login(Patients patients)
 
         {
+            
             string res = patientBAL.Login(patients);
 
             if (res == "success")
             {
-                Session["UserName"] = patients.UserName;
+                Session["UserName"] = patients.UserNameOrEmail;
                 Session["PatientId"] = patients.PatientId;
                 Session["Email"] = patients.Email;
                 Session["UsernameorEmail"] = patients.UserNameOrEmail;
-
-
+               
 
                 //string Otp = GenerateOTP();
                 //Session["GenerateOTP"] = Otp;
@@ -57,23 +57,23 @@ namespace Hospital_System.Controllers
 
                 switch (patients.Type)
                 {
-                    case 1: // Assuming 1 is for Admin
+                    case 1: 
                         return RedirectToAction("DashboardView", "Dashboard", new { id = patients.PatientId });
-                    case 2: // Assuming 2 is for Doctor
-                        return RedirectToAction("Index", "Doctor", new { id = patients.PatientId });
-                    case 3: // Assuming 3 is for Patient
+                    case 2: 
+                        return RedirectToAction("AdminHome", "Admin", new { id = patients.PatientId });
+                    case 3: 
                         return RedirectToAction("Dashboard", "Patient", new { id = patients.PatientId });
-                    case 4: // Assuming 4 is for Staff
-                        return RedirectToAction("Index", "Staff", new { id = patients.PatientId });
-                    case 5: // Assuming 5 is for Reception
+                    case 4:
                         return RedirectToAction("Reception", "Reception", new { id = patients.PatientId });
+                    case 5: 
+                        return RedirectToAction("ReceptionFrontPage", "ReceptionAdmin", new { id = patients.PatientId });
+                    case 6:
+                        return RedirectToAction("AdminHome", "Admin", new { id = patients.PatientId });
+
                     default:
-                        return RedirectToAction("Error", "Home"); // Handle unexpected user types
+                        return RedirectToAction("Error", "Home"); 
                 }
-
-             
-
-                //return RedirectToAction("Dashboard");
+                     //return RedirectToAction("Dashboard");
             }
             else
             {
@@ -130,12 +130,19 @@ namespace Hospital_System.Controllers
                 string res = patientBAL.Insertprofile(patients);
                 if (res == "1")
                 {
+                    Session["FirstName"] = patients.FirstName;
+                    Session["LastName"] = patients.LastName;
+                  
+                    Session["PhoneNo"] = patients.PhoneNo;
+                 
 
                     TempData["result"] = "Registered";
                     return RedirectToAction("Login");
                 }
             }
 
+            
+           
             TempData["result"] = "Enter All the details";
 
 
@@ -143,32 +150,58 @@ namespace Hospital_System.Controllers
         }
 
         [HttpGet]
-        public ActionResult Updateprofile()
+        public ActionResult UpdateProfile()
         {
+            Patients patients = new Patients();
+
+            Patients patients1 = new Patients();
+
+            SessionDAL sessionDAL = new SessionDAL();
+
             var patientId = Session["PatientId"] != null ? (int)Session["PatientId"] : 0;
+           
             var menu = menuBAL.GetMenus();
+        
+
+           
+            var details = sessionDAL.GetPaientDetails(patientId);
+
+            if (details != null)
+            {
+                Session["UserName"] = details.UserName;
+                Session["FirstName"] = details.FirstName;
+                Session["LastName"] = details.LastName;
+                Session["Email"] = details.Email;
+                Session["PhoneNo"] = details.PhoneNo;
+                Session["Age"] = details.Age;
+                Session["Address"] = details.Address;
+            }
 
             var model = new Allview
-
             {
-
-                Patients = new Patients
-                {
-                    PatientId = patientId,
-                },
-
+                             
+                Patients = details,
                 Menus = menu,
                 BloodGroups = new SelectList(GetBloodGroups(), "Value", "Text"),
                 GetGenders = new SelectList(GetGenders(), "Value", "Text")
             };
+
+
             ViewBag.PatientId = patientId;
+
             return View(model);
         }
+
+
+
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult UpdateProfile(Patients patients)
         {
+
             if(ModelState.IsValid)
             {
                 patients.BloodGroups = new SelectList(GetBloodGroups(), "Value", "Text");
@@ -176,19 +209,24 @@ namespace Hospital_System.Controllers
                 return View(patients);
             }
 
-              
-             var patientId = Session["PatientId"] != null ? (int)Session["PatientId"] : 0;
+            Session["FirstName"] = patients.FirstName;
+            Session["LastName"] = patients.LastName;
+            Session["PhoneNo"] = patients.PhoneNo;
+            Session["Email"] = patients.Email;
+
+            var patientId = Session["PatientId"] != null ? (int)Session["PatientId"] : 0;
              patients.PatientId = patientId;
 
+           
 
              string res = patientBAL.Updateprofile(patients);
-            var updated = res;
+             var updated = res;
 
             if (res == "1")
             {
                 TempData["Message"] = "Profile updated successfully!";
 
-                return RedirectToAction("Dashboard");
+                return RedirectToAction("UpdateProfile");
             }
 
           
@@ -246,9 +284,14 @@ namespace Hospital_System.Controllers
                 AmbulanceCount = patientBAL.GetAmbulanceCount(),
                 DriverCount = patientBAL.GetDriverCount(),
                 ActiveAppointmentsCount = patientBAL.GetActiveAppointmentsCount(),
-                PendingAppointmentsCount = patientBAL.GetPendingAppointmentsCount()
+                PendingAppointmentsCount = patientBAL.GetPendingAppointmentsCount(),
+                 Patients = new Patients() // Ensure Patients is initialized
+                 {
+                     UserNameOrEmail = Session["UsernameorEmail"]?.ToString() 
+                 }
             };
 
+         
             decimal patientId = LoggedInPatientId();
             if (patientId != 0)
             {
@@ -379,8 +422,23 @@ namespace Hospital_System.Controllers
         [HttpGet]
         public ActionResult Changepassword()
         {
+
+
+            SessionDAL sessionDAL = new SessionDAL();
+
+            var patientId = Session["PatientId"] != null ? (int)Session["PatientId"] : 0;
+
+            var details = sessionDAL.GetPaientDetails(patientId);
+
+           
+             Session["UserName"] = details.UserName;
+
+            
+
+           
             var model = new Allview
             {
+                Patients = details,
                 Menus = menuBAL.GetMenus(),
             };
             
@@ -392,13 +450,13 @@ namespace Hospital_System.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Changepassword(Patients patients)
         {
-            
-            if (Session["UsernameorEmail"] != null && patients != null && !string.IsNullOrEmpty(patients.UserNameOrEmail))
+           
+            if (Session["UsernameorEmail"] != null || patients != null ||string.IsNullOrEmpty(patients.UserNameOrEmail))
             {
                 var username = Session["UsernameorEmail"].ToString();
 
-               
-                if (username == patients.UserNameOrEmail)
+                
+                if (username == patients.UserName)
                 {
                    
                     if (patients.Password == patients.ConfirmPassword)
@@ -422,20 +480,20 @@ namespace Hospital_System.Controllers
                 }
             }
 
-            TempData["valid"] = "Invalid UserName or Session expired.";
-
+            TempData["valid"] = "Passwords does not match.";
            
+
+
+
             var model = new Allview
             {
+                
                 Menus = menuBAL.GetMenus(),
             };
 
             return View(model);
         }
 
-            
-
-        
         //forgotPassword
         [HttpGet]
         public ActionResult Forgotpassword()
@@ -486,10 +544,6 @@ namespace Hospital_System.Controllers
             var medicines = patientBAL.GetMedicines(PatientId);
 
 
-            if (medicines == null || !medicines.Any())
-            {
-                return View(medicines);
-            }
 
 
             var model = new Allview
@@ -498,6 +552,11 @@ namespace Hospital_System.Controllers
                 Medicines = medicines
                 
             };
+
+            if (medicines == null || !medicines.Any())
+            {
+                return View(model);
+            }
 
 
             return View(model);

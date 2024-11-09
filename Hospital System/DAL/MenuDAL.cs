@@ -27,7 +27,7 @@ namespace Hospital_System.DAL
         {
             List<Menu> menus = new List<Menu>();
             con.Open();
-            cmd = new SqlCommand("select * from menu where Isactive = 1 ", con);
+            cmd = new SqlCommand("select * from menu ", con);
             reader = cmd.ExecuteReader();
             while(reader.Read())
             {

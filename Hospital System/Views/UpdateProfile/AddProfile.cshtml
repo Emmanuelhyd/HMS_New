@@ -1,50 +1,56 @@
 ﻿@model Hospital_System.Dash.DashboardDetails
 
 @{
-    ViewBag.Title = "AddProfile";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Add Profile";
+    //Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_LayoutTech.cshtml";
 }
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-    }
-
+    /* Styling for form rows */
     .form-row {
         display: flex;
-        align-items: center; /* Center align items vertically */
-        margin-bottom: 15px;
+        justify-content: space-between;
+        margin-bottom: 20px; /* Space between rows */
+        flex-wrap: wrap; /* Allow items to wrap to next line on smaller screens */
     }
 
+    /* Styling for each form field */
     .form-group {
-        flex: 1;
+        flex: 1 1 calc(50% - 20px); /* 50% width minus gap */
         margin-right: 20px; /* Space between columns */
         box-sizing: border-box; /* Ensure padding is included in total width */
     }
 
-        .form-group:last-child {
-            margin-right: 0; /* Remove margin from the last item */
-        }
-
-    label {
-        display: block; /* Make labels block-level elements */
-        margin-bottom: 5px; /* Space between label and input */
+    /* Remove margin from last form group in row */
+    .form-group:last-child {
+        margin-right: 0;
     }
 
+    /* Label styling */
+    label {
+        display: block;
+        margin-bottom: 5px; /* Space between label and input */
+        font-weight: bold;
+        color: #555;
+    }
+
+    /* Input field styling */
     .form-control {
         width: 100%;
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 4px;
-        transition: border-color 0.3s;
+        transition: border-color 0.3s ease;
     }
 
-        .form-control:focus {
-            border-color: #4CAF50; /* Change border color on focus */
-            outline: none; /* Remove outline */
-        }
+    /* Focused input field styling */
+    .form-control:focus {
+        border-color: #4CAF50;
+        outline: none; /* Remove default outline */
+    }
 
+    /* Submit button styling */
     .btn-submit {
         background-color: #4CAF50;
         color: white;
@@ -53,33 +59,48 @@
         border-radius: 4px;
         cursor: pointer;
         font-size: 16px;
-        margin-top: 20px; /* Space above the button */
+        margin-top: 20px;
         transition: background-color 0.3s;
     }
 
-        .btn-submit:hover {
-            background-color: #45a049; /* Darker green on hover */
-        }
+    /* Hover effect for submit button */
+    .btn-submit:hover {
+        background-color: #45a049;
+    }
 
+    /* Error message styling */
     .text-danger {
         color: red;
         font-size: 0.9em;
+    }
+
+    /* Responsive design */
+    media (max-width: 768px) {
+        .form-group {
+            flex: 1 1 100%; /* Make form groups take full width */
+            margin-right: 0;
+        }
     }
 </style>
 
 @using (Html.BeginForm("AddProfile", "UpdateProfile"))
 {
+
+    <div style="margin-left: 20%; width: 80%; position: absolute; background: linear-gradient(45deg,skyblue,transparent); height: 100%; padding-left: 20px;">
+    
+    
+    <h1 style="text-align:center;">Add Profile</h1>
     <!-- Row 1 -->
-    <div class="form-row">
-        <div class="form-group">
-            @Html.LabelFor(m => m.UpdateDO.PatientId)
-            @Html.TextBoxFor(m => m.UpdateDO.PatientId, new { @placeholder = "Patient ID", @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.UpdateDO.UserName)
-            @Html.TextBoxFor(m => m.UpdateDO.UserName, new { @placeholder = "User Name", @class = "form-control" })
-        </div>
+<div class="form-row">
+    <div class="form-group">
+        @Html.LabelFor(m => m.UpdateDO.PatientId)
+        @Html.TextBoxFor(m => m.UpdateDO.PatientId, new { @placeholder = "Patient ID", @class = "form-control" })
     </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UpdateDO.UserName)
+        @Html.TextBoxFor(m => m.UpdateDO.UserName, new { @placeholder = "User Name", @class = "form-control" })
+    </div>
+</div>
 
     <!-- Row 2 -->
     <div class="form-row">
@@ -145,7 +166,9 @@
         </div>
     </div>
 
+    <!-- Submit button -->
     <div class="form-row">
         <input type="submit" value="Update Profile" class="btn-submit" />
     </div>
+</div>
 }

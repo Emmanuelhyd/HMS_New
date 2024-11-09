@@ -1,139 +1,218 @@
 ﻿@model Hospital_System.Dash.DashboardDetails
 
-
 @{
-    ViewBag.Title = "AddDepartment";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Add Department";
+    //Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_LayoutTech.cshtml";
 }
-
 
 @using (Html.BeginForm("AddDepartment", "Department"))
 {
-    <div style="position: absolute; width: 85%; margin-left: 15%; background-color: white;margin-top:18px;">
-        <div >
+    <div  style="width:80%; margin-left: 20%;margin-top:0px; position: absolute; background: linear-gradient(45deg,skyblue,transparent); height: 100%;">
+        <h2>Add Department</h2>
 
-            <div>
-                <div>Id</div>
-                <div>@Html.TextBoxFor(m =>m.MDepartment.Id)</div>
-            </div>
-            <div>
-                <div>DepartmentName</div>
-                <div>@Html.TextBoxFor(m => m.MDepartment.DepartmentName, new { @required = "required", @placeholder = "Department Name" })</div>
-            </div>
-            <div>
-                <div>Description</div>
-                <div>@Html.TextBoxFor(m => m.MDepartment.Description, new { @required = "required", @placeholder = "Description" })</div>
-            </div>
-            <div>
-                <div> @Html.LabelFor(m => m.MDepartment.Status, "Status")</div>
-                
-                    @Html.DropDownListFor(m => m.MDepartment.Status, new SelectList(new List<SelectListItem>
-              {
-                    
-                     new SelectListItem { Value = "Active", Text = "Active" },
-                     new SelectListItem { Value = "Inactive", Text = "Inactive" },
-   
-                 }, "Value", "Text"), "Select Status", new { @class = "form-control" })
-                </div>
-
-
-            </div>
-            <div ><input type="submit" value="Submit"></div>
-        <div style="margin-left: 99px; margin-top: -43px;"> <button type="button" class="back-button" onclick=" Back()"> Back </button></div>
+        <div>
+            <button type="button" class="back-button" onclick="Back()">Back</button>
         </div>
-   
-}
-<script>
 
-    function Back()
-    {
+        <!-- Row 1 -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="Id">Id</label>
+                @Html.TextBoxFor(m => m.MDepartment.Id, new { @class = "form-control", @placeholder = "Enter Id" })
+            </div>
+
+            <div class="form-group">
+                <label for="DepartmentName">Department Name</label>
+                @Html.DropDownListFor(m => m.MAppointmentAd.Department, new SelectList(new List<SelectListItem>
+{
+new SelectListItem{Value="General Medicine",Text="General Medicine"},
+new SelectListItem { Value = "Cardiology", Text = "Cardiology" },
+new SelectListItem { Value = "Neurology", Text = "Neurology" },
+new SelectListItem { Value = "Orthopedics", Text = "Orthopedics" },
+new SelectListItem { Value = "Pediatrics", Text = "Pediatrics" },
+new SelectListItem { Value = "Emergency", Text = "Emergency" },
+new SelectListItem { Value = "Oncology", Text = "Oncology" },
+new SelectListItem { Value = "Radiology", Text = "Radiology" },
+new SelectListItem { Value = "Dermatology", Text = "Dermatology" }
+}, "Value", "Text"), "Select Department", new { @required = "required", @class = "form-control" })
+            </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="DoctorName">Doctor Name</label>
+                @Html.TextBoxFor(m => m.MDepartment.DoctorName, new
+                {
+                    @class = "form-control",
+                    @placeholder = "Doctor Name",
+                    @required = "required",
+                    @pattern = "^[A-Za-z\\s]+$",
+                    @title = "Please enter a valid name (letters and spaces only)"
+                })
+            </div>
+
+            <div class="form-group">
+                <label for="Education">Education</label>
+                @Html.TextBoxFor(m => m.MDepartment.Education, new
+                {
+                    @class = "form-control",
+                    @placeholder = "Education",
+                    @required = "required",
+                    @pattern = "^[A-Za-z\\s]+$",
+                    @title = "Please enter a valid name (letters and spaces only)"
+                })
+            </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="Description">Description</label>
+                @Html.TextBoxFor(m => m.MDepartment.Description, new
+                {
+                    @class = "form-control",
+                    @placeholder = "Description",
+                    @required = "required"
+                })
+            </div>
+
+            <div class="form-group">
+                <label for="Gender">Gender</label>
+                @Html.DropDownListFor(m => m.MDepartment.Gender,
+                    new SelectList(new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "Male", Text = "Male" },
+                        new SelectListItem { Value = "Female", Text = "Female" },
+                        new SelectListItem { Value = "Others", Text = "Others" }
+                    }, "Value", "Text"),
+                    "Select Gender",
+                    new { @class = "form-control", @required = "required" })
+            </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="Status">Status</label>
+                @Html.DropDownListFor(m => m.MDepartment.Status,
+                    new SelectList(new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "Active", Text = "Active" },
+                        new SelectListItem { Value = "Inactive", Text = "Inactive" }
+                    }, "Value", "Text"),
+                    "Select Status",
+                    new { @class = "form-control", @required = "required" })
+            </div>
+
+            <div class="form-group submit-group">
+                <input type="submit" value="Submit" class="btn-submit">
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    function Back() {
         window.location.href = "/Dashboard/DashboardView";
     }
 </script>
 
-
-
 <style>
-    /* Container for the form */
-   
-
-    /* Styling for labels */
-    label {
-        font-weight: bold;
-        margin-bottom: 5px;
-        display: block;
+    /* Set the container to take up the full height of the screen */
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100vh; /* Full screen height */
+        padding: 20px;
+        box-sizing: border-box;
+        background-color: white;
     }
 
-    /* Input fields styling */
-    input[type="text"],
-    select {
-        width: 40%;
-        padding: 10px;
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Flexbox for form rows */
+    .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        flex: 1 1 45%; /* Make each form group take up 45% of the width */
+        box-sizing: border-box;
         margin-bottom: 15px;
+    }
+
+    /* General form control styling */
+    .form-control {
+        width: 100%;
+        padding: 10px;
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: border-box;
+        height: 40px;
     }
 
-    /* Styling for validation messages */
-    .text-danger {
-        color: red;
-        font-size: 0.9em;
-        margin-top: -10px;
-        margin-bottom: 10px;
+    /* Submit button container */
+    .submit-group {
+        flex: 1 1 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     /* Submit button styling */
-    input[type="submit"] {
+    .btn-submit {
         background-color: #4CAF50;
         color: white;
-        padding: 10px 15px;
+        padding: 10px 20px;
         border: none;
         border-radius: 4px;
         cursor: pointer;
         transition: background-color 0.3s;
     }
 
-        /* Hover effect for the submit button */
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-
-    .form-control {
-        display: block;
-        width: 40%;
-        height: calc(1.5em + .75rem + 2px);
-        padding: .375rem .75rem;
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-        color: #495057;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid #ced4da;
-        border-radius: .25rem;
-        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    .btn-submit:hover {
+        background-color: #45a049;
     }
 
-
+    /* Back button styling */
     .back-button {
-        background-color: #007bff; /* Primary color */
-        color: white; /* Text color */
-        border: none; /* No border */
-        border-radius: 5px; /* Rounded corners */
-        padding: 10px 20px; /* Padding for size */
-        font-size: 16px; /* Font size */
-        cursor: pointer; /* Pointer cursor on hover */
-        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        margin-left: -547px;
     }
 
-        .back-button:hover {
-            background-color: #0056b3; /* Darker shade on hover */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
-        }
+    .back-button:hover {
+        background-color: #0056b3;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-        .back-button:focus {
-            outline: none; /* Remove outline on focus */
+    .back-button:focus {
+        outline: none;
+    }
+
+    /* Make sure form controls are not too wide on small screens */
+    media (max-width: 768px) {
+        .form-group {
+            flex: 1 1 100%; /* Stack items vertically on small screens */
         }
+    }
 </style>

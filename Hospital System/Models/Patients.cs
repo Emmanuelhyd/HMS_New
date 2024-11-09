@@ -19,7 +19,7 @@ namespace Hospital_System.Models
         [Required(ErrorMessage = "First Name is required")]
         public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Last Name is required")]
+        //[Required(ErrorMessage = "Last Name is required")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Email is required")]
@@ -52,11 +52,14 @@ namespace Hospital_System.Models
         [Required(ErrorMessage = "Address is required")]
         public string Address { get; set; }
 
-        [NotMapped] // Ensure this property is not mapped to the database
+        
+
+
         [Required(ErrorMessage = "Confirm Password is required.")]
         [DataType(DataType.Password)]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
         public string UserNameOrEmail { get; set; }
 
         public int Type { get; set; }

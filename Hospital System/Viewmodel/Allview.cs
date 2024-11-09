@@ -22,6 +22,8 @@ namespace Hospital_System.Viewmodel
 
         public MAppointmentAd mAppointmentAd { get; set; }
 
+        public MDepartment mDepartment { get; set; }
+
         public MComplaint mComplaint { get; set; }
 
         public SelectList BloodGroups { get; set; }
@@ -44,7 +46,8 @@ namespace Hospital_System.Viewmodel
         public SelectList GetTypes { get; set; }
         public SelectList Problems { get; set; }
 
-       
+       public string UserNameorEmail { get; set; }
+
 
 
     }

@@ -1,68 +1,127 @@
 ﻿@model Hospital_System.Dash.DashboardDetails
 
 @{
-    ViewBag.Title = "AddComplaintAd";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Add Complaint";
+    //Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_LayoutTech.cshtml";
 }
 
 @using (Html.BeginForm("AddComplaintAd", "ComplaintAd"))
 {
-    <div style="position: absolute; width: 85%; margin-left: 15%; background-color: white;margin-top:18px;">
-        <div>
-            <div>
-                <div>Id</div>
-                <div>@Html.TextBoxFor(m => m.mComplaintAd.Id)</div>
+    <div style="margin-left: 20%; width: 80%; position: absolute; padding-left: 20px; background: linear-gradient(45deg,skyblue,transparent); height: 100%">
+        <h2 style="text-align:center;">Add Complaint</h2>
+
+        <!-- Flex container to group form fields side by side -->
+        <div class="form-fields">
+            <div class="form-group">
+                <label for="Id">Id</label>
+                @Html.TextBoxFor(m => m.mComplaintAd.Id, new { @class = "form-control", @readonly = "readonly" })
             </div>
 
-            <div>
-                <div>Name</div>
-                <div>@Html.TextBoxFor(m => m.mComplaintAd.Name, new { @required = "required", @placeholder = "Name" })</div>
+            <div class="form-group">
+                <label for="Name">Name</label>
+                @Html.TextBoxFor(m => m.mComplaintAd.Name, new
+ {
+    @class = "form-control",
+    @placeholder = "Enter Your Name",
+    @required = "required",
+    @pattern = "^[A-Za-z\\s]+$",
+    @title = "Please enter a valid name (letters and spaces only)"
+
+
+
+})
+                @Html.ValidationMessageFor(m => m.mComplaintAd.Name, "", new { @class = "text-danger" })
             </div>
-            <div>
-                <div>Complaint</div>
-                <div>@Html.TextBoxFor(m => m.mComplaintAd.Complaint, new { @required = "required", @placeholder = "Complaint" })</div>
+        </div>
+
+        <!-- Flex container to group form fields side by side -->
+        <div class="form-fields">
+            <div class="form-group">
+                <label for="Complaint">Complaint</label>
+                @Html.TextBoxFor(m => m.mComplaintAd.Complaint, new
+{
+    @class = "form-control",
+    @placeholder = "Enter Your Complaint",
+    @required = "required",
+    @pattern = "^[A-Za-z\\s]+$",
+    @title = "Please enter a valid name (letters and spaces only)"
+
+
+
+})
+                @Html.ValidationMessageFor(m => m.mComplaintAd.Complaint, "", new { @class = "text-danger" })
             </div>
 
-            <div>
-                <div>PhoneNumber</div>
-                <div>@Html.TextBoxFor(m => m.mComplaintAd.PhoneNumber, new { @required = "required", @placeholder = "PhoneNumber" })</div>
+            <div class="form-group">
+                <label for="PhoneNumber">Phone Number</label>
+                @Html.TextBoxFor(m => m.mComplaintAd.PhoneNumber, new
+                {
+                    @class = "form-control",
+                    @required = "required",
+                    @placeholder = "Enter Phone Number",
+                    @pattern = @"^[6789]\d{9}$",
+                    @title = "Enter a valid 10-digit phone number starting with 6, 7, 8, or 9."
+                })
+                @Html.ValidationMessageFor(m => m.mComplaintAd.PhoneNumber, "", new { @class = "text-danger" })
             </div>
-            <div>
-                <div>Replay</div>
-                <div>@Html.TextBoxFor(m => m.mComplaintAd.Replay, new { @required = "required", @placeholder = "Replay" })</div>
-            </div>
+        </div>
 
-            <div><input type="submit" value="Submit"></div>
-            <div style="margin-left: 108px; margin-top: -44px;"> <button type="button" class="back-button" onclick=" Back()"> Back </button></div>
+        <!-- Single column for 'Replay' -->
+        <div class="form-group">
+            <label for="Replay">Replay</label>
+            @Html.TextBoxFor(m => m.mComplaintAd.Replay, new { @class = "form-control", @placeholder = "Replay" })
+        </div>
+
+        <div class="form-actions">
+            <input type="submit" value="Submit" class="btn btn-success">
+            <button type="button" class="btn btn-primary back-button" onclick="Back()">Back</button>
         </div>
     </div>
 }
 
-
-
 <style>
-    /* Container for the form */
-    
+    /* Main container styling */
+    .container {
+        background-color: white;
+        padding: 20px;
+        margin-top: 18px;
+        width: 85%;
+       
+        border-radius: 8px;
+    }
 
-    /* Styling for labels */
+    /* Flex container for side-by-side form fields */
+    .form-fields {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px; /* Space between the form fields */
+        flex-wrap: wrap; /* Allows wrapping to next line if space is insufficient */
+    }
+
+    /* Form field container */
+    .form-group {
+        flex: 1 1 calc(50% - 20px); /* Ensure two fields fit side by side, adjusting for gap */
+        margin-bottom: 15px;
+    }
+
+    /* Label styling */
     label {
         font-weight: bold;
         margin-bottom: 5px;
         display: block;
     }
 
-    /* Input fields styling */
-    input[type="text"],
-    select {
-        width: 40%;
+    /* Input styling */
+    .form-control {
+        width: 100%;
         padding: 10px;
-        margin-bottom: 15px;
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: border-box;
     }
 
-    /* Styling for validation messages */
+    /* Error message styling */
     .text-danger {
         color: red;
         font-size: 0.9em;
@@ -70,10 +129,8 @@
         margin-bottom: 10px;
     }
 
-    /* Submit button styling */
-    input[type="submit"] {
-        background-color: #4CAF50;
-        color: white;
+    /* Button styling */
+    .btn {
         padding: 10px 15px;
         border: none;
         border-radius: 4px;
@@ -81,35 +138,188 @@
         transition: background-color 0.3s;
     }
 
-        /* Hover effect for the submit button */
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-    .back-button {
-        background-color: #007bff; /* Primary color */
-        color: white; /* Text color */
-        border: none; /* No border */
-        border-radius: 5px; /* Rounded corners */
-        padding: 10px 20px; /* Padding for size */
-        font-size: 16px; /* Font size */
-        cursor: pointer; /* Pointer cursor on hover */
-        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    .btn-success {
+        background-color: #4CAF50;
+        color: white;
     }
 
-        .back-button:hover {
-            background-color: #0056b3; /* Darker shade on hover */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+    .btn-success:hover {
+        background-color: #45a049;
+    }
+
+    .back-button {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .back-button:hover {
+        background-color: #0056b3;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .back-button:focus {
+        outline: none;
+    }
+
+    /* Form action buttons styling */
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    /* Responsiveness for smaller screens */
+    media (max-width: 768px) {
+        .form-fields {
+            flex-direction: column; /* Stack fields vertically on small screens */
         }
 
-        .back-button:focus {
-            outline: none; /* Remove outline on focus */
+        .form-group {
+            flex: 1 1 100%; /* Ensure each form group takes full width on small screens */
         }
+
+        .container {
+            width: 100%;
+            margin-left: 0;
+            padding: 10px;
+        }
+
+        .btn {
+            width: 100%;
+        }
+    }
 </style>
 
 <script>
-
     function Back() {
         window.location.href = "/Dashboard/DashboardView";
     }
 </script>
+
+
+
+
+
+
+
+@*@model Hospital_System.Dash.DashboardDetails
+
+    @{
+        ViewBag.Title = "Add Complaint";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+
+    @using (Html.BeginForm("AddComplaintAd", "ComplaintAd"))
+    {
+        <div class="container" style="background-color: white; padding: 20px; margin-top: 18px;">
+            <h2>Add Complaint</h2>
+
+            <div class="form-group">
+                <label for="Id">Id</label>
+                @Html.TextBoxFor(m => m.mComplaintAd.Id, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+
+            <div class="form-group">
+                <label for="Name">Name</label>
+                @Html.TextBoxFor(m => m.mComplaintAd.Name, new { @class = "form-control", @required = "required", @placeholder = "Name" })
+            </div>
+
+            <div class="form-group">
+                <label for="Complaint">Complaint</label>
+                @Html.TextBoxFor(m => m.mComplaintAd.Complaint, new { @class = "form-control", @required = "required", @placeholder = "Complaint" })
+            </div>
+
+            <div class="form-group">
+                <label for="PhoneNumber">Phone Number</label>
+                @Html.TextBoxFor(m => m.mComplaintAd.PhoneNumber, new
+                {
+                    @class = "form-control",
+                    @required = "required",
+                    @placeholder = "Enter Phone Number",
+                    @pattern = @"^[6789]\d{9}$",
+                    @title = "Enter a valid 10-digit phone number starting with 6, 7, 8, or 9."
+                })
+                @Html.ValidationMessageFor(m => m.mComplaintAd.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label for="Replay">Replay</label>
+                @Html.TextBoxFor(m => m.mComplaintAd.Replay, new { @class = "form-control", @placeholder = "Replay" })
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" value="Submit" class="btn btn-success">
+                <button type="button" class="btn btn-primary back-button" onclick="Back()">Back</button>
+            </div>
+        </div>
+    }
+
+    <style>
+        .container {
+            width: 85%;
+            margin-left: 15%;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .text-danger {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-success {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+            .btn-success:hover {
+                background-color: #45a049;
+            }
+
+        .back-button {
+            background-color: #007bff;
+            color: white;
+        }
+
+            .back-button:hover {
+                background-color: #0056b3;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            .back-button:focus {
+                outline: none;
+            }
+    </style>
+
+    <script>
+        function Back() {
+            window.location.href = "/Dashboard/DashboardView";
+        }
+    </script>*@

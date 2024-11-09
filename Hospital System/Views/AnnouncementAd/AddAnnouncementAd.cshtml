@@ -1,56 +1,70 @@
 ﻿@model Hospital_System.Dash.DashboardDetails
 
 @{
-    ViewBag.Title = "AddAnnouncementAd";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Add Announcement";
+    //Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_LayoutTech.cshtml";
 }
 
 @using (Html.BeginForm("AddAnnouncementAd", "AnnouncementAd"))
 {
-    <div class="form-container">
+    <div style="margin-left: 20%; width: 80%; position: absolute; padding-left: 20px; background: linear-gradient(45deg,skyblue,transparent); height: 100%">
+        @*<button type="button" class="back-button" onclick="Back()">Back</button>*@
         <div class="form-title">Add Announcement</div>
-        <div class="form-field">
-            <label for="Id">Id</label>
-            @Html.TextBoxFor(m => m.mAnnouncement.Id, new { @class = "form-input" })
+
+        <div class="form-fields">
+            <!-- Row 1 -->
+            <div class="form-field">
+                <label for="Id">Id</label>
+                @Html.TextBoxFor(m => m.mAnnouncement.Id, new { @class = "form-input" })
+            </div>
+
+            <div class="form-field">
+                <label for="Announcement">Announcement</label>
+                @Html.TextAreaFor(m => m.mAnnouncement.Announcement, new { @required = "required", @placeholder = "Enter your Announcement", @class = "form-textarea" })
+            </div>
         </div>
-        <div class="form-field">
-            <label for="Announcement">Announcement</label>
-            @Html.TextAreaFor(m => m.mAnnouncement.Announcement, new { @required = "required", @placeholder = "Enter your Announcement", @class = "form-textarea" })
+
+        <div class="form-fields">
+            <!-- Row 2 -->
+            <div class="form-field">
+                <label for="AnnouncementFor">Announcement For</label>
+                @Html.TextAreaFor(m => m.mAnnouncement.AnnouncementFor, new { @required = "required", @placeholder = "Announcement For", @class = "form-textarea" })
+            </div>
+
+            <div class="form-field">
+                <label for="EndDate">End Date</label>
+                @Html.TextBoxFor(m => m.mAnnouncement.EndDate, new { @required = "required", @placeholder = "Enter your End Date", @type = "datetime-local", @class = "form-input" })
+            </div>
         </div>
-        <div class="form-field">
-            <label for="AnnouncementFor">Announcement For</label>
-            @Html.TextAreaFor(m => m.mAnnouncement.AnnouncementFor, new { @required = "required", @placeholder = "Announcement For", @class = "form-textarea" })
-        </div>
-        <div class="form-field">
-            <label for="EndDate">End Date</label>
-            @Html.TextBoxFor(m => m.mAnnouncement.EndDate, new { @required = "required", @placeholder = "Enter your End Date", @type = "datetime-local", @class = "form-input" })
-        </div>
+
         <div class="form-buttons">
             <input type="submit" value="Submit" class="submit-button">
-            <button type="button" class="back-button" onclick="Back()">Back</button>
         </div>
     </div>
 }
 
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f8f9fa;
-        margin: 0;
-        padding: 20px;
+<script>
+    function Back() {
+        window.location.href = "/Dashboard/DashboardView";
     }
+</script>
 
+<style>
+    /* Container styling */
     .form-container {
         background-color: white;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         padding: 20px;
-        max-width: 600px;
+        width: 100%;
+        max-width: 600px; /* Restricting max width */
         margin: auto;
-     
-        margin-top: 20px;
+        box-sizing: border-box;
+        position: relative; /* For Back button position */
     }
 
+    /* Title styling */
     .form-title {
         text-align: center;
         font-size: 24px;
@@ -58,16 +72,28 @@
         color: #343a40;
     }
 
+    /* Form field container */
+    .form-fields {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; /* Adds spacing between fields */
+        justify-content: space-between;
+    }
+
+    /* Form field container */
     .form-field {
+        flex: 1 1 calc(50% - 20px); /* Ensures two fields fit side by side */
         margin-bottom: 15px;
     }
 
+    /* Label styling */
     label {
         font-weight: bold;
         margin-bottom: 5px;
         display: block;
     }
 
+    /* Input fields and textarea styling */
     .form-input, .form-textarea {
         width: 100%;
         padding: 10px;
@@ -77,10 +103,12 @@
         box-sizing: border-box;
     }
 
+    /* Textarea specific styling */
     .form-textarea {
-        height: 100px; /* Set a fixed height for textareas */
+        height: 100px;
     }
 
+    /* Button styling */
     .submit-button {
         background-color: #4CAF50;
         color: white;
@@ -91,10 +119,11 @@
         transition: background-color 0.3s;
     }
 
-        .submit-button:hover {
-            background-color: #45a049;
-        }
+    .submit-button:hover {
+        background-color: #45a049;
+    }
 
+    /* Back button styling */
     .back-button {
         background-color: #007bff;
         color: white;
@@ -104,22 +133,50 @@
         font-size: 16px;
         cursor: pointer;
         transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        position: absolute;
+        top: 10px;
+        left: 10px;
     }
 
-        .back-button:hover {
-            background-color: #0056b3;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+    .back-button:hover {
+        background-color: #0056b3;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
+    /* Buttons container styling */
     .form-buttons {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         margin-top: 20px;
     }
-</style>
 
-<script>
-    function Back() {
-        window.location.href = "/Dashboard/DashboardView";
+    /* Mobile responsiveness */
+    media (max-width: 768px) {
+        .form-container {
+            padding: 10px;
+            width: 90%;
+        }
+
+        .form-fields {
+            flex-direction: column; /* Stack fields vertically on smaller screens */
+        }
+
+        .form-input, .form-textarea {
+            padding: 8px;
+        }
+
+        .submit-button {
+            padding: 10px 20px;
+        }
+
+        .back-button {
+            top: 20px;
+            left: 20px;
+        }
     }
-</script>
+
+    /* No scrolling on body */
+    body {
+        overflow-x: hidden;
+    }
+</style>

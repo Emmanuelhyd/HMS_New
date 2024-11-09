@@ -1,12 +1,13 @@
-﻿@model Hospital_System.Viewmodel.Allview
+﻿
+@model Hospital_System.Viewmodel.Allview
 
 @{
-    ViewBag.Title = "Prescriptions List";
+    ViewBag.Title = "PrecList";
     Layout = "~/Views/Shared/_PatientLayout.cshtml";
 }
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,12 +22,16 @@
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 30px auto;
             padding: 20px;
-            background-color: white;
+            /*   background-color: #ffffff;*/
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /*   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+          /*  margin-left: 117px;*/
+            position: absolute;
+           
         }
 
         h2 {
@@ -64,47 +69,48 @@
 
         .table-container {
             overflow-x: auto;
-            margin-top: 20px;
         }
 
-        .btn {
+/*        .btn {
+            color: white;
+            background-color: dodgerblue;
+            width: 124%;
+            border-radius: 5px;
+        }*/
+        .button-back {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
             color: white;
             background-color: dodgerblue;
             border: none;
             border-radius: 5px;
-            padding: 10px 15px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            transition: background-color 0.3s ease;
+            font-size: 16px;
+            transition: background-color 0.3s;
         }
 
-            .btn:hover {
+            .button-back:hover {
                 background-color: #0056b3;
-            }
-
-            .btn i {
-                margin-right: 5px; /* Space between icon and text */
             }
     </style>
 </head>
 <body>
 
+    @*<div style=" position: absolute; margin-top: 17px; margin-left: 29px;">
+            <button type="button" class=" btn" onclick="Back()"> Back</button>
+        </div>*@
+    <button class="button-back" onclick="Back()" style=" margin-left: 12%; margin-top: 0%; position: absolute;"><i class="fas fa-arrow-left"></i>Back </button>
     <div class="container">
-        <button type="button" class="btn" onclick="Back()">
-            <i class="fas fa-arrow-left"></i> 
-        </button>
-
         <h2>Prescriptions</h2>
-        <div class="table-container">
+        <div class="table-container" style=" margin-left: 10%;">
             <table>
                 <thead>
                     <tr>
-                        <th>Patient Name</th>
-                        <th>Doctor Name</th>
+                        <th>PatientName</th>
+                        <th>DoctorName</th>
                         <th>Problem</th>
-                        <th>Medicine Name</th>
+                        <th>MedicineName</th>
                         <th>Morning</th>
                         <th>Afternoon</th>
                         <th>Night</th>
@@ -121,17 +127,22 @@
                             <td>@Html.DisplayFor(modelItem => item.Morning)</td>
                             <td>@Html.DisplayFor(modelItem => item.Afternoon)</td>
                             <td>@Html.DisplayFor(modelItem => item.Night)</td>
+
                         </tr>
                     }
                 </tbody>
             </table>
+
+
         </div>
     </div>
-
-    <script>
-        function Back() {
-            window.location.href = "/Patient/Dashboard";
-        }
-    </script>
 </body>
 </html>
+
+<script>
+
+    function Back() {
+
+        window.location.href = "/Patient/Dashboard";
+    }
+</script>

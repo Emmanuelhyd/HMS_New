@@ -29,6 +29,7 @@ namespace Hospital_System.Controllers
                 Adminmenus = adminBAL.GetAdminmenus(),
                 updateDOs = updateDOs
             };
+
             return View(update);
         }
 
@@ -58,8 +59,10 @@ namespace Hospital_System.Controllers
                 {
                     Adminmenus = adminBAL.GetAdminmenus(),
                     UpdateDO = updateDO
-
                 };
+
+
+
                 return View(role);
             }
             else
@@ -81,8 +84,9 @@ namespace Hospital_System.Controllers
             {
                 Adminmenus = adminBAL.GetAdminmenus(),
                 UpdateDO = updateDO
-
             };
+
+
 
             if (updateDO.PatientId != 0)
             {

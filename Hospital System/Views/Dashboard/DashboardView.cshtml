@@ -2,90 +2,153 @@
 
 @{
     ViewBag.Title = "Dashboard";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_LayoutTech.cshtml";
 }
 
 @using (Html.BeginForm())
 {
-    <div id="dashboard">
-        <div class="link-container" id="tab1">
-            <a href="/Department/DepartmentList" class="link">
-                <div class="icon">
-                    <i class="fa fa-building"></i>
-                </div>
-                <p class="count">@Model.MDepartmentCount</p>
-                <span class="tag">Department</span>
-            </a>
+    <div id="dashboard" style="width: 80%; margin-left: 20%; background: linear-gradient(45deg,skyblue,transparent); height: 100%;">
+        <!-- Pie Chart Container: Aligned to the top-left -->
+        <div class="pie-chart-container" style="background: linear-gradient(to right, #d512d7, #ffffff);">
+            <canvas id="myPieChart" width="200" height="200"></canvas>
         </div>
-        <div class="link-container" id="tab2">
-            <a href="/DoctorAd/DoctorListAd" class="link">
-                <div class="icon">
-                    <i class="fa fa-user-md"></i>
-                </div>
-                <p class="count">@Model.MDoctorCount</p>
-                <span class="tag">Doctors</span>
-            </a>
+
+        <!-- First Column: 4 boxes aligned vertically -->
+        <div class="dashboard-left">
+            <div class="link-container" id="tab1" style="margin-left: 100px; margin-top: 26px; width: 230px; height: 230px;">
+                <a href="/Department/DepartmentList" class="link">
+                    <div class="icon">
+                        <i class="fa fa-building" style="width:30px;height:30px;"></i>
+                    </div>
+                    <p class="count">@Model.MDepartmentCount</p>
+                    <span class="stag" style="margin-top:40px;position:absolute;margin-left:-50px;">Department</span>
+                </a>
+            </div>
+            <div class="link-container" id="tab2" style="width: 230px; height: 230px; margin-left: 413px; margin-top: -249px;">
+                <a href="/DoctorAd/DoctorListAd" class="link">
+                    <div class="icon">
+                        <i class="fa fa-user-md"></i>
+                    </div>
+                    <p class="count">@Model.MDoctorCount</p>
+                    <span class="tag" style="margin-top:40px;position:absolute;margin-left:-50px;">Doctors</span>
+                </a>
+            </div>
+            <div class="link-container" id="tab3" style="width: 200px; height: 200px; margin-left: -271px; margin-top: 80px;">
+                <a href="/AppointmentAd/AppointmentList" class="link">
+                    <div class="icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <p class="count">@Model.MPatientCount</p>
+                    <span class="tag">Patients</span>
+                </a>
+            </div>
+            <div class="link-container" id="tab4" style="width: 200px; height: 200px; margin-top: -218px;margin-left:-25px;">
+                <a href="/AppointmentAd/AppointmentList" class="link">
+                    <div class="icon">
+                        <i class="fa fa-calendar-check"></i>
+                    </div>
+                    <p class="count">@Model.MAppointmentCount</p>
+                    <span class="stag">Appointment</span>
+                </a>
+            </div>
         </div>
-        <div class="link-container" id="tab3">
-            <a href="/PatientAd/PatientList" class="link">
-                <div class="icon">
-                    <i class="fa fa-user"></i>
-                </div>
-                <p class="count">@Model.MPatientCount</p>
-                <span class="tag">Patients</span>
-            </a>
-        </div>
-        <div class="link-container" id="tab4">
-            <a href="/AppointmentAd/AppointmentList" class="link">
-                <div class="icon">
-                    <i class="fa fa-calendar-check"></i>
-                </div>
-                <p class="count">@Model.MAppointmentCount</p>
-                <span class="tag">Appointment</span>
-            </a>
-        </div>
-        <div class="link-container" id="tab5">
-            <a href="/MedicineAd/MedicineAdList" class="link">
-                <div class="icon">
-                    <i class="fa fa-capsules"></i>
-                </div>
-                <p class="count">@Model.MMedicineAdCount</p>
-                <span class="tag">Medicine</span>
-            </a>
-        </div>
-        <div class="link-container" id="tab6">
-            <a href="/ComplaintAd/ComplaintAdList" class="link">
-                <div class="icon">
-                    <i class="fa fa-frown"></i>
-                </div>
-                <p class="count">@Model.MComplaintAdCount</p>
-                <span class="tag">Complaint</span>
-            </a>
-        </div>
-        <div class="link-container" id="tab7">
-            <a href="/AnnouncementAd/AnnouncementList" class="link">
-                <div class="icon">
-                    <i class="fa fa-bullhorn"></i>
-                </div>
-                <p class="count">@Model.MAnnouncementCount</p>
-                <span class="tag">Announcement</span>
-            </a>
-        </div>
-        <div class="link-container" id="tab8">
-            <a href="/AmbulanceAd/AmbulanceListAd" class="link">
-                <div class="icon">
-                    <i class="fas fa-ambulance"></i>
-                </div>
-                <p class="count">@Model.MAmbulanceCount</p>
-                <span class="tag">Ambulance</span>
-            </a>
+
+        <!-- Second Column: 2 boxes aligned horizontally -->
+        <div class="dashboard-right">
+            <div class="link-container" id="tab5" style="width: 200px; height: 200px; margin-top: -220px; margin-left: 490px; ">
+                <a href="/MedicineAd/MedicineAdList" class="link">
+                    <div class="icon">
+                        <i class="fa fa-capsules"></i>
+                    </div>
+                    <p class="count">@Model.MMedicineAdCount</p>
+                    <span class="tag">Medicine</span>
+                </a>
+            </div>
+            <div class="link-container" id="tab6" style="width: 200px; height: 200px; margin-top: -220px;margin-left:20px;">
+                <a href="/ComplaintAd/ComplaintAdList" class="link">
+                    <div class="icon">
+                        <i class="fa fa-frown"></i>
+                    </div>
+                    <p class="count">@Model.MComplaintAdCount</p>
+                    <span class="tag">Complaint</span>
+                </a>
+            </div>
         </div>
     </div>
 }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var ctx = document.getElementById('myPieChart').getContext('2d');
+
+        // Check if ctx is valid
+        if (ctx) {
+            var data = {
+                labels: [
+                    'Department',
+                    'Doctors',
+                    'Patients',
+                    'Appointments',
+                    'Medicines',
+                    'Complaints',
+                    'Announcements',
+                    'Ambulances'
+                ],
+                datasets: [{
+                    data: [
+                        @Model.MDepartmentCount,
+                        @Model.MDoctorCount,
+                        @Model.MPatientCount,
+                        @Model.MAppointmentCount,
+                        @Model.MMedicineAdCount,
+                        @Model.MComplaintAdCount,
+                        @Model.MAnnouncementCount,
+                        @Model.MAmbulanceCount
+                    ],
+                    backgroundColor: [
+                        '#ff9999', '#66b3ff', '#99ff99', '#ffcc99', '#c2c2f0', // Colors for the first few items
+                        '#ffccff', '#ff9966', '#66ff99'  // Colors for Complaints, Announcements, Ambulances
+                    ],
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }]
+            };
+
+            var myPieChart = new Chart(ctx, {
+                type: 'pie', // Pie chart type
+                data: data,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top', // Position the legend at the top
+                            labels: {
+                                boxWidth: 20, // Adjust box size for each legend item
+                                padding: 10,   // Adjust space between items
+                                font: {
+                                    size: 12, // Adjust font size of the labels
+                                    weight: 'bold',
+                                    family: 'Arial'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw + ' cases';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    });
+</script>
 
 <style>
+    /* Global Styles */
     body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -95,22 +158,53 @@
 
     #dashboard {
         display: flex;
-        flex-wrap: wrap; /* Wraps items to the next line */
-        justify-content: center; /* Center items horizontally */
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 20px;
         padding: 20px;
-        gap: 20px; /* Adds space between items */
     }
 
+    /* Pie chart alignment - top-left */
+    .pie-chart-container {
+        width: 250px;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    #myPieChart {
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Dashboard Left (4 vertical boxes) */
+    .dashboard-left {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Dashboard Right (2 horizontal boxes) */
+    .dashboard-right {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    /* Styling for the individual dashboard link containers */
     .link-container {
         background-color: #ffffff;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         text-align: center;
         padding: 20px;
-        width: 200px; /* Set box width */
-        height: 200px; /* Set box height */
+        width: 160px;
+        height: 160px;
         transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        margin-left: 50px;
     }
 
         .link-container:hover {
@@ -121,7 +215,8 @@
     .icon {
         font-size: 36px;
         margin-bottom: 15px;
-        color: palevioletred    }
+        color: palevioletred;
+    }
 
     .count {
         font-size: 28px;
@@ -129,12 +224,13 @@
         margin: 10px 0;
     }
 
-    .tag {
-        font-weight: 900;
+    .stag, .tag {
+        font-weight: 600;
         color: blue;
+        font-size: 20px;
+        text-align: left;
+        margin-left: -25px;
     }
-
-        .tag:hover {
-            background-color: #0056b3;
-        }
 </style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">

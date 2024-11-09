@@ -133,33 +133,33 @@ namespace Hospital_System.BAL
 
         //Add patient
 
-        public List<MPatient> AddPatientAd(MPatient mPatient)
-        {
-            List<MPatient> mPatients = new List<MPatient>();
-            mPatients = adminDAL.AddPatientAd(mPatient);
-            return mPatients;
-        }
+        //public List<MPatient> AddPatientAd(MPatient mPatient)
+        //{
+        //    List<MPatient> mPatients = new List<MPatient>();
+        //    mPatients = adminDAL.AddPatientAd(mPatient);
+        //    return mPatients;
+        //}
 
-        //edit patient
-        public MPatient PatientEdit(int Id)
-        {
-            MPatient mPatients = adminDAL.PatientEdit(Id);
+        ////edit patient
+        //public MPatient PatientEdit(int Id)
+        //{
+        //    MPatient mPatients = adminDAL.PatientEdit(Id);
 
-            return mPatients;
-        }
-        //patient delete
-        public List<MPatient> PatientDelete(int Id)
-        {
-            List<MPatient> mPatients = adminDAL.PatientDelete(Id);
-            return mPatients;
-        }
+        //    return mPatients;
+        //}
+        ////patient delete
+        //public List<MPatient> PatientDelete(int Id)
+        //{
+        //    List<MPatient> mPatients = adminDAL.PatientDelete(Id);
+        //    return mPatients;
+        //}
 
 
         //Shedule List
 
-        public List<MShedule> SheduleList(string Shedule)
+        public List<MShedule> SheduleList(string Schedule)
         {
-            return adminDAL.SheduleList(Shedule);
+            return adminDAL.SheduleList(Schedule);
         }
 
         //add shedule
@@ -311,9 +311,9 @@ namespace Hospital_System.BAL
 
 
         //Ambulance List
-        public List<MAmbulance> AmbulanceListAd()
+        public List<MAmbulance> AmbulanceListAd(string Driver)
         {
-            return adminDAL.AmbulanceListAd();
+            return adminDAL.AmbulanceListAd(Driver);
         }
 
 

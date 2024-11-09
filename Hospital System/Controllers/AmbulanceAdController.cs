@@ -18,12 +18,12 @@ namespace Hospital_System.Controllers
         AdminDAL adminDAL;
         AdminBAL adminBAL = new AdminBAL();
         // GET: AmbulanceAd
-        public ActionResult AmbulanceListAd()
+        public ActionResult AmbulanceListAd(string Driver)
         {
             MAmbulance mAmbulances = new MAmbulance();
             List<MAmbulance> mAmbulance = new List<MAmbulance>();
 
-            mAmbulance = adminBAL.AmbulanceListAd();
+            mAmbulance = adminBAL.AmbulanceListAd(Driver);
 
             var menu = new DashboardDetails
             {
@@ -169,28 +169,28 @@ namespace Hospital_System.Controllers
             };
             return View(driver);
         }
-        //Add driver
-        //[HttpPost]
-        
+       
+
+
         public ActionResult AddDriverAd(MDriverAd mDriverAd)
         {
             var ids = 0;
 
             List<MDriverAd> mDriverAds = new List<MDriverAd>();
-            
+
 
             if (mDriverAd.Id != 0)
             {
                 mDriverAds = adminBAL.AddDriverAd(mDriverAd);
             }
-            else  if (mDriverAds.Count == 0)
-                {
+            else if (mDriverAds.Count == 0)
+            {
                 adminDAL = new AdminDAL();
                 if (mDriverAd.Id == 0)
                 {
                     ids = adminDAL.DynamicId();
                 }
-                mDriverAd.Id = ids+1;
+                mDriverAd.Id = ids + 1;
                 var drivers = new DashboardDetails
                 {
                     Adminmenus = adminBAL.GetAdminmenus(),
@@ -198,12 +198,12 @@ namespace Hospital_System.Controllers
                 };
 
                 return View(drivers);
-                }
-               
-                
-                    return RedirectToAction("AmbulanceDriverAd", mDriverAds);
-                
-           
+            }
+
+
+            return RedirectToAction("AmbulanceDriverAd", mDriverAds);
+
+
 
             //return View(mDriver);
         }
@@ -246,25 +246,25 @@ namespace Hospital_System.Controllers
 
         // view driver details
 
-        public ActionResult Ambulancedriver( int Id)
-            {
-           
-                MDriverAd mDriver = adminBAL.Ambulancedriver(Id);
+        public ActionResult Ambulancedriver(int Id)
+        {
 
-                if (mDriver == null)
-                {
-                    return HttpNotFound("ID not found");
-                }
+            MDriverAd mDriver = adminBAL.Ambulancedriver(Id);
+
+            if (mDriver == null)
+            {
+                return HttpNotFound("ID not found");
+            }
 
             var driver = new DashboardDetails
             {
                 Adminmenus = adminBAL.GetAdminmenus(),
                 MDriverAd = mDriver
             };
-                
-                return PartialView("_Ambulancedriver", driver);
 
-            
+            return PartialView("_Ambulancedriver", driver);
+
+
         }
 
 
