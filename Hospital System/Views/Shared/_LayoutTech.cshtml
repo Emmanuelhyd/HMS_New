@@ -1,0 +1,162 @@
+﻿
+
+
+
+
+<div style="width: 20%; height: 100%; position: absolute; background: linear-gradient(135deg, #00aaff, #005577); margin-top: -10px; ">
+    <ul>
+        <li><a href="/Dashboard/DashboardView" class="active">DashBoard</a></li>
+        <li>
+            <a href="#">Department</a>
+            <ul>
+                <li><a href="/Department/AddDepartment">Add New</a></li>
+                <li><a href="/Department/DepartmentList">Department List</a></li>
+
+            </ul>
+        </li>
+        <li>
+            <a href="#">Doctors</a>
+            <ul>
+                <li><a href="/DoctorAd/AddDoctorAd">Add New Doctor </a></li>
+                <li><a href="/DoctorAd/DoctorListAd">Doctors List</a></li>
+                <li><a href="/SheduleAd/AddSheduleAd">Add New Shedule</a></li>
+                <li><a href="/SheduleAd/SheduleList">Shedule List</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Patients</a>
+            <ul>
+                <li><a href="/PatientAd/PatientList">Patients List</a></li>
+
+            </ul>
+        </li>
+        <li>
+            <a href="#">Appointmemnts</a>
+            <ul>
+
+                <li><a href="/AppointmentAd/AddAppointmentAd">Add Appointment</a></li>
+                <li><a href="/AppointmentAd/AppointmentList">Appointments List</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Announcements</a>
+            <ul>
+                <li><a href="/AnnouncementAd/AddAnnouncementAd">Add Announcements</a></li>
+                <li><a href="/AnnouncementAd/AnnouncementList">Announcement List</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Complaints</a>
+            <ul>
+                <li><a href="/ComplaintAd/AddComplaintAd">Add Complaints</a></li>
+                <li><a href="/ComplaintAd/ComplaintAdList">Complaints List</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Prescription</a>
+            <ul>
+                <li><a href="/MedicineAd/AddMedicineAd">Add Prescription</a></li>
+                <li><a href="/MedicineAd/MedicineAdList">Prescription List</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Ambulance</a>
+            <ul>
+                <li><a href="/AmbulanceAd/AddAmbulanceAd">Add Ambulance</a></li>
+                <li><a href="/AmbulanceAd/AmbulanceListAd">Ambulane List</a></li>
+                <li><a href="/AmbulanceAd/AddDriverAd">Add Driver</a></li>
+                <li><a href="/AmbulanceAd/AmbulanceDriverAd">Drivers List</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">UserRoles & Types</a>
+            <ul>
+                <li><a href="/UpdateProfile/AddProfile">Add User Role</a></li>
+                <li><a href="/UpdateProfile/UpdateList">Update Use Role</a></li>
+                <li><a href="/RolesAdmin/AddRole">Add Type</a></li>
+                <li><a href="/RolesAdmin/RolesList">Update Type</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Manage</a>
+            <ul>
+                <li><a href="/ReceptionAdmin/ReceptionFrontPage">Reception</a></li>
+                <li><a href="/Admin/AdminHome">Blood Bank</a></li>
+                <li><a href="/home/index">Log Out</a></li>
+
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<style>
+    /* Basic Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Sidebar container */
+    ul {
+        list-style-type: none; /* Remove default bullets */
+    }
+
+    li {
+        position: relative; /* To allow positioning of submenus */
+        padding: 12px 16px; /* Padding for menu items */
+    }
+
+    a {
+        display: block;
+        color: #333; /* Text color */
+        text-decoration: none; /* Remove underlines */
+        font-size: 18px;
+        padding: 8px 16px;
+        background-color: white; /* White background for normal state */
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+        /* Hover effect: white background on hover, dark text */
+        a:hover {
+            background-color: white; /* White background on hover */
+            color: #333; /* Dark text on hover */
+        }
+
+    /* Hide submenus by default */
+    ul ul {
+        display: none; /* Hide submenus */
+        list-style-type: none; /* Remove bullets */
+        padding-left: 20px; /* Indentation for submenus */
+    }
+
+    /* Show submenu when parent <li> is hovered */
+    li:hover > ul {
+        display: block; /* Show submenu on hover */
+    }
+
+    /* Optional: Styling for submenu items */
+    ul ul li a {
+        font-size: 16px;
+        color: black; /* Lighter color for submenu items */
+    }
+
+        /* Submenu hover effect */
+        ul ul li a:hover {
+            background-color: #39d5cc;
+            color: lightcyan;
+        }
+
+    /* Optional active link */
+    .active {
+        background-color: #2ce0c4; /* Active link color */
+        color: white; /* Text color for active item */
+    }
+</style>
+
+
+<div>
+    @RenderBody()
+
+</div>
+

@@ -1,0 +1,180 @@
+﻿@model Hospital_System.Models.UserModel
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #eef2f3;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            width: 320px;
+            padding: 20px;
+            background: #ffcccc;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h4 {
+            color: #000;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+
+        .form-label {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 5px;
+            text-align: left;
+            display: block;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+            width: calc(100% - 22px);
+            transition: border-color 0.3s;
+        }
+
+            .form-control:focus {
+                border-color: #e57373;
+                box-shadow: 0 0 5px rgba(233, 30, 99, 0.5);
+                outline: none;
+            }
+
+        .btn-primary {
+            background-color: #e57373;
+            border: none;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+            padding: 10px;
+            width: 100%;
+            color: #fff;
+            font-weight: bold;
+        }
+
+            .btn-primary:hover {
+                background-color: #d32f2f;
+                transform: translateY(-2px);
+            }
+
+        .alert {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h4>Registration Page</h4>
+
+        <!-- Success Message -->
+        @if (ViewData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @ViewData["SuccessMessage"]
+            </div>
+        }
+
+        <!-- Error Message -->
+        @if (ViewData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @ViewData["ErrorMessage"]
+            </div>
+        }
+
+        @using (Html.BeginForm("RegisterForm", "User"))
+        {
+            <div class="mb-3">
+                @Html.LabelFor(m => m.FirstName, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First Name", required = "required", aria_required = "true" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.LastName, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last Name", required = "required", aria_required = "true" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.EmailId, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.EmailId, new
+                  {
+                      @class = "form-control",
+                      placeholder = "Enter Email",
+                      type = "email",
+                      required = "required",
+                      pattern = "^[a-zA-Z0-9._%+-]+@gmail\\.[a-zA-Z]{2,}$",
+                      title = "Please enter a valid Gmail address ending with @gmail. (e.g., example@gmail.com, user123@gmail.in)"
+                  })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password", required = "required", aria_required = "true" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.PhoneNumber, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", placeholder = "Enter Phone Number", required = "required", pattern = @"\d{10}", maxlength = "10", title = "Phone number must be exactly 10 digits" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.DateOfBirth, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control", id = "datepicker", placeholder = "Select Date", required = "required", aria_required = "true" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Address, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "Address", required = "required", aria_required = "true" })
+            </div>
+
+            <div>
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        }
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        $(document).ready(function () {
+            flatpickr("#datepicker", {
+                dateFormat: "Y-m-d",
+                maxDate: "today"
+            });
+        });
+    </script>
+</body>
+</html>
